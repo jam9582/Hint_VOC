@@ -32,6 +32,21 @@ function Field({
   );
 }
 
+function FormSection({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className="border-t border-line pt-5 pb-6 first:border-t-0 first:pt-0">
+      <h2 className="card-title mb-4">{title}</h2>
+      <div className="grid gap-4 sm:grid-cols-2">{children}</div>
+    </section>
+  );
+}
+
 function SelectField({
   label,
   name,
@@ -133,7 +148,7 @@ function FormFields({
   return (
     <div className="grid gap-[22px] xl:grid-cols-[minmax(0,1fr)_300px]">
       <div className="card min-w-0 p-5 sm:p-6">
-        <div className="grid gap-4 sm:grid-cols-2">
+        <FormSection title="접수">
           <Field label="접수 일시" required>
             <input
               name="received_at"
@@ -163,9 +178,14 @@ function FormFields({
               className={inputClass}
             />
           </Field>
-          <Field label="팀 구성">
-            <input name="team" maxLength={200} className={inputClass} />
-          </Field>
+          <div className="sm:col-span-2">
+            <Field label="팀 구성">
+              <input name="team" maxLength={200} className={inputClass} />
+            </Field>
+          </div>
+        </FormSection>
+
+        <FormSection title="차량·부품">
           <Field label="차대번호" required>
             <input
               name="vin"
@@ -185,20 +205,6 @@ function FormFields({
               className={inputClass}
             />
           </Field>
-          <SelectField
-            label="유형"
-            name="voc_type"
-            required
-            options={list("voc_type")}
-            onChange={setVocType}
-          />
-          <SelectField
-            label="부위 대분류"
-            name="system"
-            required
-            options={list("system")}
-            onChange={setSystem}
-          />
           <Field label="부품명" required>
             <input
               name="part_name"
@@ -215,6 +221,23 @@ function FormFields({
               className={inputClass}
             />
           </Field>
+        </FormSection>
+
+        <FormSection title="문제 내용">
+          <SelectField
+            label="유형"
+            name="voc_type"
+            required
+            options={list("voc_type")}
+            onChange={setVocType}
+          />
+          <SelectField
+            label="부위 대분류"
+            name="system"
+            required
+            options={list("system")}
+            onChange={setSystem}
+          />
           <SelectField
             label="발생 빈도"
             name="frequency"
@@ -227,47 +250,44 @@ function FormFields({
             required
             options={list("reproduced")}
           />
-        </div>
+          <div className="sm:col-span-2">
+            <Field label="증상 설명" required>
+              <textarea
+                name="symptom"
+                required
+                maxLength={2000}
+                rows={4}
+                className={inputClass}
+              />
+            </Field>
+          </div>
+          {vocType && (
+            <fieldset className="rounded-lg border border-line bg-inset p-4 sm:col-span-2">
+              <legend className="px-1 text-[13px] font-semibold">
+                유형별 추가 항목
+              </legend>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {getTypeDetailFields(vocType).map((field) => (
+                  <TypeDetailInput
+                    key={`${vocType}.${field.key}`}
+                    field={field}
+                  />
+                ))}
+              </div>
+            </fieldset>
+          )}
+          <div className="sm:col-span-2">
+            <Field label="사진·영상 링크">
+              <input
+                name="media_links"
+                placeholder="주소가 여러 개면 쉼표로 구분"
+                className={inputClass}
+              />
+            </Field>
+          </div>
+        </FormSection>
 
-        <div className="mt-4">
-          <Field label="증상 설명" required>
-            <textarea
-              name="symptom"
-              required
-              maxLength={2000}
-              rows={4}
-              className={inputClass}
-            />
-          </Field>
-        </div>
-
-        {vocType && (
-          <fieldset className="mt-5 rounded-lg border border-line bg-inset p-4">
-            <legend className="px-1 text-[13px] font-semibold">
-              유형별 추가 항목
-            </legend>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {getTypeDetailFields(vocType).map((field) => (
-                <TypeDetailInput
-                  key={`${vocType}.${field.key}`}
-                  field={field}
-                />
-              ))}
-            </div>
-          </fieldset>
-        )}
-
-        <div className="mt-4">
-          <Field label="사진·영상 링크">
-            <input
-              name="media_links"
-              placeholder="주소가 여러 개면 쉼표로 구분"
-              className={inputClass}
-            />
-          </Field>
-        </div>
-
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center">
           <button
             type="submit"
             disabled={pending}

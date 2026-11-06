@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import type { StageField } from "@/lib/rules/stage-fields";
 import { getMissingStageFields } from "@/lib/rules/validation";
+import { showToast } from "../../toast";
 import { D6_FAIL, type CodeOptions, type Stage } from "@/types/codes";
 import {
   advanceStageAction,
@@ -84,7 +85,10 @@ export function StageForm({
   const missing = getMissingStageFields(stage, values);
   const run = (action: typeof saveStageAction) =>
     startTransition(async () => {
-      setResult(await action(vocId, stage, values));
+      const next = await action(vocId, stage, values);
+      // 단계가 바뀌면 이 폼이 새로 그려지므로 공통 알림으로 보여 준다.
+      if (next.ok && action === advanceStageAction) showToast(next.message);
+      else setResult(next);
     });
 
   return (

@@ -15,6 +15,21 @@ const fieldClass =
   "min-h-8 rounded-md border border-line bg-card px-2 py-1 text-[13px] font-medium";
 const buttonClass = "btn btn-light btn-sm";
 
+const GROUP_LABELS: Record<CodeGroup, string> = {
+  voc_type: "유형",
+  system: "부위",
+  channel: "접수 경로",
+  grade: "등급",
+  frequency: "발생 빈도",
+  reproduced: "재현 여부",
+  stage: "단계",
+  d4_method: "D4 분석 방법",
+  d4_verified: "D4 재현 검증",
+  d6_result: "D6 검증 결과",
+  d8_customer: "D8 고객 확인",
+  shift: "근무조",
+};
+
 function CodeItem({ row, locked }: { row: CodeRow; locked: boolean }) {
   if (locked) {
     return (
@@ -67,7 +82,12 @@ function CodeGroupBlock({ group, rows }: { group: CodeGroup; rows: CodeRow[] }) 
   return (
     <details data-group={group} className="rounded-lg border border-line p-3.5">
       <summary className="cursor-pointer text-[13px] font-semibold">
-        {group} ({rows.length}){locked && " · 규칙에서 쓰는 값이라 바꿀 수 없음"}
+        {GROUP_LABELS[group]} ({rows.length})
+        {locked && (
+          <span className="ml-2 text-xs font-medium text-ink-3">
+            규칙에서 쓰는 값이라 바꿀 수 없음
+          </span>
+        )}
       </summary>
       <ul className="mt-3 flex flex-col gap-2">
         {rows.map((row) => (

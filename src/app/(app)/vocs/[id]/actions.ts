@@ -39,9 +39,9 @@ function lastRollbackAt(logs: VocDetail["logs"]) {
   return rollback?.changed_at ?? null;
 }
 
-function refresh(vocId: string) {
-  revalidatePath(`/vocs/${vocId}`);
-  revalidatePath("/status");
+/** 현황 건수까지 맞도록 공통 틀부터 새로 읽는다. */
+function refresh() {
+  revalidatePath("/", "layout");
 }
 
 export async function saveStageAction(
@@ -56,7 +56,7 @@ export async function saveStageAction(
       return { ok: false, message: STAGE_CHANGED };
     }
     await saveVoc8d(vocId, pickStageValues(stage, input));
-    refresh(vocId);
+    refresh();
     return { ok: true, message: "저장했습니다." };
   } catch (error) {
     console.error("8D 저장 실패", error);
@@ -103,7 +103,7 @@ export async function advanceStageAction(
       changedBy: user.name,
       note: plan.note,
     });
-    refresh(vocId);
+    refresh();
 
     const failed = stageValues.d6_result === D6_FAIL;
     return {
@@ -125,6 +125,6 @@ export async function advanceStageAction(
 export async function deleteVocAction(vocId: string) {
   await requireAdmin();
   await deleteVoc(vocId);
-  revalidatePath("/status");
+  refresh();
   redirect("/status");
 }

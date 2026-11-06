@@ -1,6 +1,7 @@
 import { requireUser } from "@/lib/auth";
 import { logout } from "./actions";
 import { RAIL_ICONS } from "./app-rail";
+import { RailLink } from "./nav-links";
 
 export async function UserMenu() {
   const user = await requireUser();
@@ -8,6 +9,11 @@ export async function UserMenu() {
 
   return (
     <div className="flex items-center gap-2 lg:flex-col lg:gap-3">
+      {user.role === "admin" && (
+        <RailLink href="/admin" label="관리자">
+          {RAIL_ICONS.admin}
+        </RailLink>
+      )}
       <form action={logout}>
         <button
           type="submit"

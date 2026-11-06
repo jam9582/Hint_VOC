@@ -125,7 +125,8 @@ export function TrendChart({ weeks }: { weeks: TrendWeek[] }) {
         ))}
       </div>
 
-      <table className="sr-only">
+      <div className="sr-only">
+      <table>
         <caption>주별 접수와 종결 건수</caption>
         <thead>
           <tr>
@@ -144,6 +145,7 @@ export function TrendChart({ weeks }: { weeks: TrendWeek[] }) {
           ))}
         </tbody>
       </table>
+      </div>
     </figure>
   );
 }

@@ -323,7 +323,7 @@ async function StatusContent({
                   <tr
                     key={row.voc_id}
                     data-overdue={overdue}
-                    className={`border-b border-line last:border-b-0 ${
+                    className={`relative border-b border-line last:border-b-0 ${
                       overdue
                         ? "bg-late-bg/50 hover:bg-late-bg"
                         : "hover:bg-inset"
@@ -332,7 +332,7 @@ async function StatusContent({
                     <td className="py-3 pr-3 pl-[22px] whitespace-nowrap">
                       <Link
                         href={`/vocs/${row.voc_id}`}
-                        className="text-[13px] font-semibold hover:text-primary"
+                        className="text-[13px] font-semibold after:absolute after:inset-0"
                       >
                         {row.voc_id}
                       </Link>

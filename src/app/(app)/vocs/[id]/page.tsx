@@ -35,7 +35,7 @@ const CIRCLE_CLASS: Record<StepState, string> = {
   later: "bg-inset text-ink-3",
 };
 
-function Item({ label, value }: { label: string; value: string | number | null }) {
+function Item({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div>
       <dt className="text-xs font-medium text-ink-3">{label}</dt>
@@ -46,13 +46,39 @@ function Item({ label, value }: { label: string; value: string | number | null }
   );
 }
 
-/** 왼쪽에 단계 표시, 오른쪽에 내용이 오는 한 줄. */
+/** 주소만 눌러서 열 수 있게 한다. 다른 글자는 그대로 보여 준다. */
+function MediaLinks({ value }: { value: string | null }) {
+  if (!value) return "-";
+  return (
+    <span className="flex flex-col gap-1">
+      {value.split(",").map((item) => {
+        const text = item.trim();
+        return /^https?:\/\//i.test(text) ? (
+          <a
+            key={text}
+            href={text}
+            target="_blank"
+            rel="noreferrer"
+            className="text-link break-all"
+          >
+            {text}
+          </a>
+        ) : (
+          <span key={text}>{text}</span>
+        );
+      })}
+    </span>
+  );
+}
+
+/** 왼쪽에 단계 표시, 오른쪽에 내용이 오는 한 줄. 접으면 제목만 보인다. */
 function Step({
   code,
   title,
   note,
   state,
   stage,
+  collapsed = false,
   children,
 }: {
   code: string;
@@ -60,28 +86,52 @@ function Step({
   note: string;
   state: StepState;
   stage?: Stage;
+  collapsed?: boolean;
   children: ReactNode;
 }) {
+  const heading = (
+    <div className="flex items-start gap-3">
+      <span
+        className={`grid size-7 shrink-0 place-items-center rounded-full text-[11px] font-bold ${CIRCLE_CLASS[state]}`}
+      >
+        {code}
+      </span>
+      <div>
+        <h2 className="text-sm font-semibold">{title}</h2>
+        <small
+          className={`text-xs font-medium ${state === "current" ? "font-semibold text-primary" : "text-ink-3"}`}
+        >
+          {note}
+        </small>
+      </div>
+    </div>
+  );
+
+  if (collapsed) {
+    return (
+      <section data-stage={stage} className="border-t border-line first:border-t-0">
+        <details className="group py-4">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 [&::-webkit-details-marker]:hidden">
+            {heading}
+            <span className="text-xs font-semibold text-ink-3 group-open:hidden">
+              내용 보기
+            </span>
+            <span className="hidden text-xs font-semibold text-ink-3 group-open:inline">
+              접기
+            </span>
+          </summary>
+          <div className="mt-3 md:pl-[168px]">{children}</div>
+        </details>
+      </section>
+    );
+  }
+
   return (
     <section
       data-stage={stage}
       className="grid gap-3 border-t border-line py-4 first:border-t-0 md:grid-cols-[150px_minmax(0,1fr)] md:gap-[18px]"
     >
-      <div className="flex items-start gap-3">
-        <span
-          className={`grid size-7 shrink-0 place-items-center rounded-full text-[11px] font-bold ${CIRCLE_CLASS[state]}`}
-        >
-          {code}
-        </span>
-        <div>
-          <h2 className="text-sm font-semibold">{title}</h2>
-          <small
-            className={`text-xs font-medium ${state === "current" ? "font-semibold text-primary" : "text-ink-3"}`}
-          >
-            {note}
-          </small>
-        </div>
-      </div>
+      {heading}
       <div className="min-w-0">{children}</div>
     </section>
   );
@@ -118,7 +168,10 @@ function ReceiptSection({
       </dl>
       <dl className="mt-3 grid gap-3">
         <Item label="증상 설명" value={voc.symptom} />
-        <Item label="사진·영상 링크" value={voc.media_links} />
+        <Item
+          label="사진·영상 링크"
+          value={<MediaLinks value={voc.media_links} />}
+        />
       </dl>
     </Step>
   );
@@ -172,6 +225,7 @@ function StageBlock({
       note={note}
       state={state}
       stage={section.stage}
+      collapsed={state === "done" && voc.stage !== "종결"}
     >
       {isCurrent && (
         <StageForm

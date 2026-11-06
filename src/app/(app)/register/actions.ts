@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { after } from "next/server";
 import { sendSafetyAlert } from "@/lib/alerts";
 import { requireUser } from "@/lib/auth";
@@ -104,6 +105,8 @@ export async function registerVocAction(
       text("team"),
       user.name,
     );
+    // 현황 건수와 목록도 새로 읽는다.
+    revalidatePath("/", "layout");
     if (fields.grade === GRADE_SAFETY) {
       after(() => sendSafetyAlert(vocId));
     }

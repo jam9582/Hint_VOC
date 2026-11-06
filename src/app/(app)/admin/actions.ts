@@ -48,7 +48,7 @@ export async function addCodeAction(formData: FormData): Promise<AdminResult> {
     console.error("코드 추가 실패", error);
     return failed("코드를 추가하지 못했습니다.");
   }
-  revalidatePath("/admin");
+  revalidatePath("/", "layout");
   return { ok: true, message: "추가했습니다." };
 }
 
@@ -77,7 +77,7 @@ export async function updateCodeAction(
     console.error("코드 수정 실패", error);
     return failed("코드를 저장하지 못했습니다.");
   }
-  revalidatePath("/admin");
+  revalidatePath("/", "layout");
   return { ok: true, message: "저장했습니다." };
 }
 
@@ -99,6 +99,6 @@ export async function updateRoleAction(
     console.error("계정 유형 변경 실패", error);
     return failed("계정 유형을 바꾸지 못했습니다.");
   }
-  revalidatePath("/admin");
+  revalidatePath("/", "layout");
   return { ok: true, message: "바꿨습니다." };
 }
