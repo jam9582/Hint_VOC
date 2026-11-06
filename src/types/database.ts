@@ -112,6 +112,12 @@ export type ProfileRow = {
   created_at: string;
 };
 
+/** 유사 VOC 한 건. matched는 맞은 조건 번호(1, 2, 3)다. */
+export type SimilarVoc = Pick<
+  VocRow,
+  "voc_id" | "received_at" | "part_name" | "stage"
+> & { matched: number[] };
+
 type Table<Row, Insert = Row> = {
   Row: Row;
   Insert: Insert;
@@ -146,6 +152,16 @@ export type Database = {
       register_voc: {
         Args: { p_voc: Json; p_team: string; p_changed_by: string };
         Returns: string;
+      };
+      find_similar_vocs: {
+        Args: {
+          p_vin: string;
+          p_part_no: string;
+          p_voc_type: string;
+          p_system: string;
+          p_exclude_voc_id?: string;
+        };
+        Returns: SimilarVoc[];
       };
       advance_voc_stage: {
         Args: {

@@ -5,6 +5,7 @@ import type { FormEvent, ReactNode } from "react";
 import type { CodeGroup, VocType } from "@/types/codes";
 import { getTypeDetailFields, type TypeDetailField } from "@/types/type-detail";
 import { HistoryPanel } from "../history-panel";
+import { SimilarPanel } from "../similar-panel";
 import { registerVocAction, type RegisterResult } from "./actions";
 
 export type CodeOption = { value: string; label: string };
@@ -125,6 +126,7 @@ function FormFields({
   const [vocType, setVocType] = useState("");
   const [vin, setVin] = useState("");
   const [partNo, setPartNo] = useState("");
+  const [system, setSystem] = useState("");
   const list = (group: CodeGroup) => options[group] ?? [];
 
   return (
@@ -194,6 +196,7 @@ function FormFields({
             name="system"
             required
             options={list("system")}
+            onChange={setSystem}
           />
           <Field label="부품명" required>
             <input
@@ -274,6 +277,14 @@ function FormFields({
       </div>
       <aside className="h-fit rounded border border-zinc-300 p-4 lg:sticky lg:top-4">
         <HistoryPanel vin={vin} partNo={partNo} />
+        <div className="mt-4 border-t border-zinc-300 pt-4">
+          <SimilarPanel
+            vin={vin}
+            partNo={partNo}
+            vocType={vocType}
+            system={system}
+          />
+        </div>
       </aside>
     </div>
   );

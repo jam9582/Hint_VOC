@@ -2,8 +2,10 @@
 
 import { requireUser } from "@/lib/auth";
 import { fromSeoulDateTimeLocal } from "@/lib/dates";
+import { findSimilarVocs, type SimilarQuery } from "@/lib/db/similar";
 import { registerVoc } from "@/lib/db/vocs";
 import { getD3DueDate } from "@/lib/rules/due-date";
+import { toSimilarIds } from "@/lib/rules/similar";
 import {
   hasProblems,
   isVocType,
@@ -18,9 +20,7 @@ import type { Json } from "@/types/database";
 import { getTypeDetailFields } from "@/types/type-detail";
 
 export type RegisterResult =
-  | { vocId: string }
-  | { problems: FormProblems }
-  | { error: string };
+  { vocId: string } | { problems: FormProblems } | { error: string };
 
 /** 8장 표에 있는 항목과 값만 골라 담는다. */
 function readTypeDetail(formData: FormData, type: VocType): TypeDetail {
@@ -45,6 +45,16 @@ function toStoredDetail(detail: TypeDetail, type: VocType) {
   return Object.keys(stored).length > 0 ? stored : null;
 }
 
+/** 유사 VOC 조회가 실패해도 접수는 저장한다. 상세 화면은 다시 계산해 보여 준다. */
+async function readSimilarIds(query: SimilarQuery) {
+  try {
+    return toSimilarIds(await findSimilarVocs(query));
+  } catch (error) {
+    console.error("유사 VOC 조회 실패", error);
+    return null;
+  }
+}
+
 export async function registerVocAction(
   formData: FormData,
 ): Promise<RegisterResult> {
@@ -61,6 +71,14 @@ export async function registerVocAction(
   const receivedAt = fromSeoulDateTimeLocal(fields.received_at);
   if (hasProblems(problems) || !type || !receivedAt) return { problems };
 
+  const partNo = text("part_no");
+  const similarIds = await readSimilarIds({
+    vin: fields.vin,
+    partNo,
+    vocType: type,
+    system: fields.system,
+  });
+
   try {
     const vocId = await registerVoc(
       {
@@ -73,12 +91,13 @@ export async function registerVocAction(
         voc_type: type,
         system: fields.system,
         part_name: fields.part_name,
-        part_no: text("part_no") || null,
+        part_no: partNo || null,
         symptom: fields.symptom,
         frequency: fields.frequency,
         reproduced: fields.reproduced,
         type_detail: toStoredDetail(detail, type),
         media_links: text("media_links") || null,
+        similar_ids: similarIds,
         due_at: getD3DueDate(receivedAt, fields.grade),
       },
       text("team"),

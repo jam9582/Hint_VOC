@@ -19,6 +19,7 @@ export type NewVoc = Pick<
   | "reproduced"
   | "type_detail"
   | "media_links"
+  | "similar_ids"
   | "due_at"
 > & { received_at: string };
 

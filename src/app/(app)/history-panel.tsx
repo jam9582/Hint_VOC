@@ -1,13 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { VehicleHistory } from "@/lib/db/history";
+import { useCallback } from "react";
 import { lookupHistory } from "./history-actions";
+import { useDelayedLookup } from "./use-delayed-lookup";
 
 const VIN_LENGTH = 17;
-const LOOKUP_DELAY_MS = 300;
-
-type Loaded = { key: string; history: VehicleHistory | null };
 
 function Row({ label, value }: { label: string; value: string | null }) {
   return (
@@ -35,38 +32,20 @@ function Section({
 
 /** 차대번호와 부품 번호로 찾은 이력. 등록과 상세 화면에서 함께 쓴다. */
 export function HistoryPanel({ vin, partNo }: { vin: string; partNo: string }) {
-  const [loaded, setLoaded] = useState<Loaded>();
   const canLookup = vin.length === VIN_LENGTH;
   const key = `${vin}|${partNo}`;
-
-  useEffect(() => {
-    if (!canLookup) return;
-    let stale = false;
-    const timer = setTimeout(() => {
-      lookupHistory(vin, partNo)
-        .then((history) => {
-          if (!stale) setLoaded({ key, history });
-        })
-        .catch(() => {
-          if (!stale) setLoaded({ key, history: null });
-        });
-    }, LOOKUP_DELAY_MS);
-    return () => {
-      stale = true;
-      clearTimeout(timer);
-    };
-  }, [canLookup, key, partNo, vin]);
+  const lookup = useCallback(() => lookupHistory(vin, partNo), [vin, partNo]);
+  const result = useDelayedLookup(key, canLookup, lookup);
 
   if (!canLookup) {
     return (
       <p className="text-sm">차대번호 17자를 입력하면 이력이 나타납니다.</p>
     );
   }
-  if (loaded?.key !== key)
+  if (result.status === "loading") {
     return <p className="text-sm">이력을 찾는 중입니다.</p>;
-
-  const { history } = loaded;
-  if (!history) {
+  }
+  if (result.status === "failed") {
     return (
       <p role="alert" className="text-sm text-red-700">
         이력을 불러오지 못했습니다. 잠시 뒤 다시 시도해 주세요.
@@ -74,6 +53,7 @@ export function HistoryPanel({ vin, partNo }: { vin: string; partNo: string }) {
     );
   }
 
+  const history = result.data;
   return (
     <>
       <Section title="차량 이력">
