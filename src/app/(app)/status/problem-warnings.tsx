@@ -3,7 +3,7 @@ import { requireUser } from "@/lib/auth";
 import { listProblemGroups } from "@/lib/db/metrics";
 import type { ProblemGroup } from "@/types/database";
 
-function groupTitle(group: ProblemGroup) {
+export function groupTitle(group: ProblemGroup) {
   return group.kind === "lot"
     ? `같은 부품·LOT (${group.part_no}, ${group.part_lot})`
     : `같은 유형·부위·부품 (${group.voc_type}, ${group.system}, ${group.part_no})`;
@@ -16,7 +16,12 @@ export async function ProblemWarnings() {
 
   return (
     <section id="groups" className="card h-fit scroll-mt-20 p-5">
-      <h2 className="card-title">같은 문제 묶음</h2>
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="card-title">같은 문제 묶음</h2>
+        <Link href="/groups" className="text-link text-xs">
+          전체 보기
+        </Link>
+      </div>
       <p className="mt-0.5 mb-3.5 text-xs font-medium text-ink-3">
         같은 LOT 또는 같은 부품·유형의 미종결 VOC
       </p>

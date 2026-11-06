@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
+import { requireUser } from "@/lib/auth";
 import { RailLink } from "./nav-links";
 
 const iconProps = {
@@ -25,6 +26,24 @@ export const RAIL_ICONS = {
       <path d="M12 4v16M4 12h16" />
     </svg>
   ),
+  mine: (
+    <svg {...iconProps}>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c1-4 4-6 8-6s7 2 8 6" />
+    </svg>
+  ),
+  groups: (
+    <svg {...iconProps}>
+      <path d="M12 3l9 5-9 5-9-5z" />
+      <path d="M3 13l9 5 9-5" />
+    </svg>
+  ),
+  reports: (
+    <svg {...iconProps}>
+      <path d="M5 4h10l4 4v12H5z" />
+      <path d="M9 12h6M9 16h6" />
+    </svg>
+  ),
   admin: (
     <svg {...iconProps}>
       <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
@@ -37,6 +56,35 @@ export const RAIL_ICONS = {
     </svg>
   ),
 };
+
+/** 내 담당은 로그인한 사람의 이름으로 현황을 거른 화면이다. */
+async function MainLinks() {
+  const { name } = await requireUser();
+
+  return (
+    <>
+      <RailLink href="/status" label="현황" alsoActiveOn="/vocs" notOwner={name}>
+        {RAIL_ICONS.status}
+      </RailLink>
+      <RailLink
+        href={`/status?owner=${encodeURIComponent(name)}`}
+        label="내 담당"
+        owner={name}
+      >
+        {RAIL_ICONS.mine}
+      </RailLink>
+      <RailLink href="/register" label="등록">
+        {RAIL_ICONS.register}
+      </RailLink>
+      <RailLink href="/groups" label="같은 문제">
+        {RAIL_ICONS.groups}
+      </RailLink>
+      <RailLink href="/reports" label="보고서">
+        {RAIL_ICONS.reports}
+      </RailLink>
+    </>
+  );
+}
 
 /** 왼쪽 메뉴. 폭이 좁으면 맨 위 가로 줄이 된다. */
 export function AppRail({ children }: { children: ReactNode }) {
@@ -54,12 +102,7 @@ export function AppRail({ children }: { children: ReactNode }) {
         className="flex items-center gap-1 lg:flex-col lg:items-stretch lg:gap-3"
       >
         <Suspense>
-          <RailLink href="/status" label="현황" alsoActiveOn="/vocs">
-            {RAIL_ICONS.status}
-          </RailLink>
-          <RailLink href="/register" label="등록">
-            {RAIL_ICONS.register}
-          </RailLink>
+          <MainLinks />
         </Suspense>
       </nav>
       <div className="flex-1" />
