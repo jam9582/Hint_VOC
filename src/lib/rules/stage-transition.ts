@@ -64,7 +64,11 @@ export function planTransition(input: TransitionInput): TransitionResult {
     case "D4":
       return plan("D5-D6", addDays(baseDate, 14), { d4_done_at: timestamp });
     case "D5-D6":
-      return plan("D6검증", addDays(today, 14));
+      // 이전 검증 결과가 남아 있어도 새 검증은 빈 칸에서 시작한다.
+      return plan("D6검증", addDays(today, 14), {
+        d6_result: null,
+        d6_evidence: null,
+      });
     case "D6검증":
       if (values.d6_result === D6_PASS) {
         return plan("D7-D8", addDays(today, 7));
