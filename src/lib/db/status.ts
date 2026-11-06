@@ -34,13 +34,15 @@ export type StatusRow = Pick<
 
 /**
  * 현황 목록을 읽는다. 기본은 최근 접수 순이고, 기한순이면 미종결을 앞에 둔다.
- * overdueBefore를 주면 그 날짜 전이 기한인 미종결만 읽는다. total은 거른 뒤의 전체 건수다.
+ * overdueBefore를 주면 그 날짜 전이 기한인 미종결만, dueThrough를 주면 그 날짜까지가 기한인 미종결만 읽는다.
+ * total은 거른 뒤의 전체 건수다.
  */
 export async function listStatusRows(
   filters: StatusFilters,
-  { sort = "recent", overdueBefore }: {
+  { sort = "recent", overdueBefore, dueThrough }: {
     sort?: StatusSort;
     overdueBefore?: string;
+    dueThrough?: string;
   } = {},
 ) {
   const supabase = await createClient();
@@ -58,6 +60,9 @@ export async function listStatusRows(
 
   if (overdueBefore) {
     query = query.neq("stage", "종결").lt("due_at", overdueBefore);
+  }
+  if (dueThrough) {
+    query = query.neq("stage", "종결").lte("due_at", dueThrough);
   }
   if (sort === "due") {
     query = query

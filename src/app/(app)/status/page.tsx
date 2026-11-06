@@ -96,6 +96,7 @@ async function Dashboard({
   const open = vocs.filter((voc) => voc.stage !== "종결");
   const late = open.filter((voc) => voc.due_at < today).length;
   const dueToday = open.filter((voc) => voc.due_at === today).length;
+  const urgent = late + dueToday;
 
   return (
     <>
@@ -112,7 +113,14 @@ async function Dashboard({
           </div>
           <div>
             <h2 className="text-lg font-bold tracking-tight">
-              {user.name}님, 먼저 볼 VOC가 {late + dueToday}건 있어요
+              {user.name}님,{" "}
+              {urgent > 0 ? (
+                <Link href="/status?urgent=1&sort=due#list" className="text-link">
+                  먼저 볼 VOC가 {urgent}건 있어요 ›
+                </Link>
+              ) : (
+                "먼저 볼 VOC가 없어요"
+              )}
             </h2>
             <p className="mt-0.5 text-[13px] font-medium text-ink-2">
               기한 초과 <b className="text-late">{late}건</b> · 오늘 기한{" "}
@@ -212,11 +220,13 @@ async function StatusContent({
   const filters = readFilters(params);
   const sort = readSort(params);
   const overdueOnly = params.overdue === "1";
+  const urgentOnly = params.urgent === "1";
   const today = toSeoulDate(new Date());
   const [{ rows, total }, codes, { models, owners }] = await Promise.all([
     listStatusRows(filters, {
       sort,
       overdueBefore: overdueOnly ? today : undefined,
+      dueThrough: urgentOnly ? today : undefined,
     }),
     listActiveCodes(),
     listStatusFilterOptions(),
@@ -227,10 +237,14 @@ async function StatusContent({
       ?.label ?? value;
 
   return (
-    <section className="card h-fit min-w-0 pt-5 pb-1.5">
+    <section id="list" className="card h-fit min-w-0 scroll-mt-20 pt-5 pb-1.5">
       <div className="flex flex-wrap items-center justify-between gap-3 px-[22px]">
         <h2 className="card-title">
-          {overdueOnly ? "기한 초과 VOC" : "VOC 목록"}
+          {overdueOnly
+            ? "기한 초과 VOC"
+            : urgentOnly
+              ? "먼저 볼 VOC (기한 초과 · 오늘 기한)"
+              : "VOC 목록"}
         </h2>
         <ListTabs params={params} sort={sort} mine={user.name} />
       </div>
@@ -243,6 +257,7 @@ async function StatusContent({
       >
         {sort === "due" && <input type="hidden" name="sort" value="due" />}
         {overdueOnly && <input type="hidden" name="overdue" value="1" />}
+        {urgentOnly && <input type="hidden" name="urgent" value="1" />}
         <FilterSelect
           name="stage"
           label="단계"
