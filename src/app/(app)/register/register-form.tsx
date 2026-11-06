@@ -2,14 +2,16 @@
 
 import { startTransition, useActionState, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
-import type { CodeGroup, VocType } from "@/types/codes";
+import type {
+  CodeGroup,
+  CodeOption,
+  CodeOptions,
+  VocType,
+} from "@/types/codes";
 import { getTypeDetailFields, type TypeDetailField } from "@/types/type-detail";
 import { HistoryPanel } from "../history-panel";
 import { SimilarPanel } from "../similar-panel";
 import { registerVocAction, type RegisterResult } from "./actions";
-
-export type CodeOption = { value: string; label: string };
-export type CodeOptions = Partial<Record<CodeGroup, CodeOption[]>>;
 
 const inputClass = "mt-1 w-full rounded border border-zinc-400 bg-white p-2";
 

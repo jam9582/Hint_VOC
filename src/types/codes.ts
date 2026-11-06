@@ -20,6 +20,9 @@ export const CODE_GROUPS = [
 ] as const;
 export type CodeGroup = (typeof CODE_GROUPS)[number];
 
+export type CodeOption = { value: string; label: string };
+export type CodeOptions = Partial<Record<CodeGroup, CodeOption[]>>;
+
 export const VOC_TYPES = [
   "NVH",
   "FUNC",

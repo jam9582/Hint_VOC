@@ -1,6 +1,6 @@
 import { VOC_TYPES, type Stage, type VocType } from "@/types/codes";
-import type { Voc8dRow } from "@/types/database";
 import { getTypeDetailFields } from "@/types/type-detail";
+import { getStageFields, type StageFieldKey } from "./stage-fields";
 
 /** PRD 6-2, 6-5, 8장의 필수 검사. 서버 코드에서 부른다. */
 
@@ -69,37 +69,12 @@ export function validateRegistration(
   return { missing, invalid };
 }
 
-type StageField = keyof Omit<Voc8dRow, "voc_id">;
-
-/** 단계별 필수 항목 (6-2). 이 항목이 모두 차야 다음 단계로 넘어간다. */
-const STAGE_REQUIRED: Record<Stage, Partial<Record<StageField, string>>> = {
-  D3: { d3_scope: "봉쇄 범위", d3_action: "봉쇄 조치" },
-  D4: {
-    d4_occur_cause: "발생 원인",
-    d4_escape_cause: "유출 원인",
-    d4_verified: "재현 검증 결과",
-  },
-  "D5-D6": {
-    d5_occur_action: "발생 대책",
-    d5_escape_action: "유출 대책",
-    d6_cutover: "적용 시작 차대번호 또는 LOT",
-    d6_criteria: "검증 기준",
-  },
-  D6검증: { d6_result: "검증 결과", d6_evidence: "검증 근거" },
-  "D7-D8": {
-    d7_docs: "표준 반영 문서",
-    d7_horizontal: "수평 전개 대상",
-    d8_customer: "고객 확인 결과",
-  },
-  종결: {},
-};
-
-/** 지금 단계에서 비어 있는 필수 항목의 이름을 돌려준다. */
+/** 지금 단계에서 비어 있는 필수 항목의 이름을 돌려준다. (PRD 6-2) */
 export function getMissingStageFields(
   stage: Stage,
-  values: Partial<Record<StageField, string | null>>,
+  values: Partial<Record<StageFieldKey, string | null>>,
 ): string[] {
-  return Object.entries(STAGE_REQUIRED[stage])
-    .filter(([key]) => !values[key as StageField]?.trim())
-    .map(([, label]) => label);
+  return getStageFields(stage)
+    .filter((field) => field.required && !values[field.key]?.trim())
+    .map((field) => field.label);
 }

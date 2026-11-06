@@ -18,6 +18,9 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             <Link href="/status" className="underline">
               현황
             </Link>
+            <Link href="/vocs" className="underline">
+              상세
+            </Link>
           </nav>
         </div>
         <Suspense>

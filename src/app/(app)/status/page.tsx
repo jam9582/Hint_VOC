@@ -179,7 +179,11 @@ async function StatusContent({
                     data-overdue={overdue}
                     className={`border-b border-zinc-200 ${overdue ? "bg-red-50 text-red-700" : ""}`}
                   >
-                    <td className="whitespace-nowrap p-2">{row.voc_id}</td>
+                    <td className="whitespace-nowrap p-2">
+                      <Link href={`/vocs/${row.voc_id}`} className="underline">
+                        {row.voc_id}
+                      </Link>
+                    </td>
                     <td className="p-2">
                       <StageProgress stage={row.stage} />
                     </td>

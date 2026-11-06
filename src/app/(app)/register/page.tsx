@@ -1,19 +1,12 @@
 import { Suspense } from "react";
 import { requireUser } from "@/lib/auth";
 import { toSeoulDateTimeLocal } from "@/lib/dates";
-import { listActiveCodes } from "@/lib/db/codes";
-import type { CodeGroup } from "@/types/codes";
-import { RegisterForm, type CodeOptions } from "./register-form";
+import { listActiveCodes, toCodeOptions } from "@/lib/db/codes";
+import { RegisterForm } from "./register-form";
 
 async function RegisterContent() {
   await requireUser();
-  const codes = await listActiveCodes();
-
-  const options: CodeOptions = {};
-  for (const { code_group, code, label } of codes) {
-    const group = code_group as CodeGroup;
-    (options[group] ??= []).push({ value: code, label: label ?? code });
-  }
+  const options = toCodeOptions(await listActiveCodes());
 
   return (
     <RegisterForm

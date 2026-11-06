@@ -61,7 +61,14 @@ export function SimilarPanel({
           <ul className="flex flex-col gap-2">
             {result.data.map((voc) => (
               <li key={voc.voc_id}>
-                <p className="font-medium">{voc.voc_id}</p>
+                <a
+                  href={`/vocs/${voc.voc_id}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium underline"
+                >
+                  {voc.voc_id}
+                </a>
                 <p>
                   {toSeoulDate(new Date(voc.received_at))} · {voc.part_name} ·{" "}
                   {voc.stage}
