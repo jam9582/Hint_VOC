@@ -6,5 +6,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  // 예약 실행 주소는 로그인 대신 비밀 값으로 확인한다.
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|api/alerts).*)"],
 };

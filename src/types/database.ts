@@ -115,6 +115,16 @@ export type ProfileRow = {
 /** 현황 목록 한 줄. voc에 vehicle의 차종을 붙인 뷰다. */
 export type VocListRow = VocRow & { model: string | null };
 
+/** 같은 문제 묶음. kind가 lot이면 조건 ①, part이면 조건 ②다. */
+export type ProblemGroup = {
+  kind: "lot" | "part";
+  part_no: string;
+  part_lot: string | null;
+  voc_type: string | null;
+  system: string | null;
+  voc_ids: string[];
+};
+
 /** 유사 VOC 한 건. matched는 맞은 조건 번호(1, 2, 3)다. */
 export type SimilarVoc = Pick<
   VocRow,
@@ -152,6 +162,7 @@ export type Database = {
     };
     Views: {
       voc_list: { Row: VocListRow; Relationships: [] };
+      voc_problem_groups: { Row: ProblemGroup; Relationships: [] };
       voc_filter_options: {
         Row: { kind: "model" | "owner"; value: string };
         Relationships: [];

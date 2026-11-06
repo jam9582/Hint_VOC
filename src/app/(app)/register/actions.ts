@@ -1,5 +1,7 @@
 "use server";
 
+import { after } from "next/server";
+import { sendSafetyAlert } from "@/lib/alerts";
 import { requireUser } from "@/lib/auth";
 import { fromSeoulDateTimeLocal } from "@/lib/dates";
 import { findSimilarVocs, type SimilarQuery } from "@/lib/db/similar";
@@ -14,6 +16,7 @@ import {
   type RegisterFields,
   type TypeDetail,
 } from "@/lib/rules/validation";
+import { GRADE_SAFETY } from "@/types/codes";
 import type { Json } from "@/types/database";
 import { getTypeDetailFields } from "@/types/type-detail";
 
@@ -101,6 +104,9 @@ export async function registerVocAction(
       text("team"),
       user.name,
     );
+    if (fields.grade === GRADE_SAFETY) {
+      after(() => sendSafetyAlert(vocId));
+    }
     return { vocId };
   } catch (error) {
     console.error("VOC 등록 실패", error);

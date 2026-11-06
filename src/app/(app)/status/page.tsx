@@ -13,6 +13,8 @@ import {
   type StatusFilters,
 } from "@/lib/db/status";
 import type { CodeRow } from "@/types/database";
+import { MetricsSummary } from "./metrics-summary";
+import { ProblemWarnings } from "./problem-warnings";
 import { StageProgress } from "./stage-progress";
 
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -215,6 +217,12 @@ export default function StatusPage({
   return (
     <main className="mx-auto w-full max-w-6xl p-4 sm:p-8">
       <h1 className="text-xl font-semibold">VOC 현황</h1>
+      <Suspense>
+        <ProblemWarnings />
+      </Suspense>
+      <Suspense>
+        <MetricsSummary />
+      </Suspense>
       <Suspense fallback={<p className="mt-4">불러오는 중입니다.</p>}>
         <StatusContent searchParams={searchParams} />
       </Suspense>
