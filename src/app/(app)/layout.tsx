@@ -6,7 +6,7 @@ import { UserMenu } from "./user-menu";
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-dvh w-full lg:grid lg:grid-cols-[72px_210px_minmax(0,1fr)]">
+    <div className="min-h-dvh w-full lg:grid lg:grid-cols-[72px_210px_minmax(0,1fr)] print:block">
       <AppRail>
         <Suspense>
           <UserMenu />
@@ -14,7 +14,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       </AppRail>
       <Suspense
         fallback={
-          <div className="hidden border-r border-line bg-card lg:block" />
+          <div className="hidden border-r border-line bg-card lg:block print:hidden" />
         }
       >
         <SidePanel />

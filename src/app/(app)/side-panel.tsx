@@ -21,7 +21,7 @@ export async function SidePanel() {
   return (
     <nav
       aria-label="VOC 바로가기"
-      className="flex gap-1 overflow-x-auto border-b border-line bg-card px-3 py-2 lg:sticky lg:top-0 lg:h-dvh lg:flex-col lg:border-r lg:border-b-0 lg:px-2.5 lg:py-[22px]"
+      className="flex gap-1 overflow-x-auto border-b border-line bg-card px-3 py-2 lg:sticky lg:top-0 lg:h-dvh lg:flex-col lg:border-r lg:border-b-0 lg:px-2.5 lg:py-[22px] print:hidden"
     >
       <p className="hidden px-3 pb-2 text-[13px] font-semibold text-primary lg:block">
         VOC 현황

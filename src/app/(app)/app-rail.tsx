@@ -47,7 +47,7 @@ export const RAIL_ICONS = {
 /** 왼쪽 아이콘 줄. 폭이 좁으면 맨 위 가로 줄이 된다. */
 export function AppRail({ children }: { children: ReactNode }) {
   return (
-    <aside className="sticky top-0 z-20 flex items-center gap-4 bg-card px-4 py-2 shadow-card lg:h-dvh lg:flex-col lg:gap-5 lg:px-0 lg:py-5">
+    <aside className="sticky top-0 z-20 flex items-center gap-4 bg-card px-4 py-2 shadow-card lg:h-dvh lg:flex-col lg:gap-5 lg:px-0 lg:py-5 print:hidden">
       <Link
         href="/"
         aria-label="VOC 통합 관리 첫 화면"

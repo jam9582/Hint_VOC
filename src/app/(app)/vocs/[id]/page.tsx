@@ -254,9 +254,14 @@ async function VocContent({ params }: { params: Promise<{ id: string }> }) {
   return (
     <>
       <PageHeader title={voc.voc_id}>
-        <Link href="/status" className="text-link text-[13px]">
-          현황으로 돌아가기
-        </Link>
+        <div className="flex flex-wrap items-center gap-4">
+          <Link href={`/vocs/${voc.voc_id}/report`} className="text-link text-[13px]">
+            8D 보고서
+          </Link>
+          <Link href="/status" className="text-link text-[13px]">
+            현황으로 돌아가기
+          </Link>
+        </div>
       </PageHeader>
 
       <section className="card mb-[22px] flex flex-wrap items-center justify-between gap-4 px-6 py-5">
