@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { requireUser } from "@/lib/auth";
 import { toSeoulDate, toSeoulDateTimeLocal } from "@/lib/dates";
 import { listActiveCodes } from "@/lib/db/codes";
-import { listMetricVocs, listProblemGroups } from "@/lib/db/metrics";
+import { listMetricVocs } from "@/lib/db/metrics";
 import {
   listStatusFilterOptions,
   listStatusRows,
@@ -86,11 +86,7 @@ async function Dashboard({
   searchParams: Promise<SearchParams>;
 }) {
   const user = await requireUser();
-  const [params, vocs, groups] = await Promise.all([
-    searchParams,
-    listMetricVocs(),
-    listProblemGroups(),
-  ]);
+  const [params, vocs] = await Promise.all([searchParams, listMetricVocs()]);
   const now = new Date();
   const today = toSeoulDate(now);
   const open = vocs.filter((voc) => voc.stage !== "종결");
@@ -124,10 +120,7 @@ async function Dashboard({
             </h2>
             <p className="mt-0.5 text-[13px] font-medium text-ink-2">
               기한 초과 <b className="text-late">{late}건</b> · 오늘 기한{" "}
-              {dueToday}건 ·{" "}
-              <Link href="#groups" className="text-link">
-                같은 문제 묶음 {groups.length}개
-              </Link>
+              {dueToday}건
             </p>
           </div>
         </div>
