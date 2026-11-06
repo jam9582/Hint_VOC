@@ -44,7 +44,7 @@ export default function GroupsPage() {
     <main className="px-4 py-5 lg:px-7 lg:py-[22px]">
       <PageHeader title="같은 문제 묶음">
         <p className="text-[13px] text-ink-3">
-          같은 LOT 또는 같은 부품·유형의 미종결 VOC
+          아직 끝나지 않은 VOC 중 원인이 같을 수 있는 건을 2건 이상 모았습니다
         </p>
       </PageHeader>
       <Suspense fallback={<div className="card h-80 animate-pulse" />}>

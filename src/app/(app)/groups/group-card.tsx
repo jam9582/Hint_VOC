@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Stage } from "@/types/codes";
 import type { ProblemGroup } from "@/types/database";
 import { DueBadge } from "../due-badge";
+import { GROUP_KINDS, GroupKindBadge } from "../group-kind";
 import { groupTitle } from "../status/problem-warnings";
 
 export type GroupVoc = {
@@ -24,20 +25,14 @@ export function GroupCard({
 }) {
   return (
     <section className="card min-w-0 pt-5 pb-1.5">
-      <div className="flex items-center gap-3 px-[22px]">
-        <span
-          className={`grid size-10 shrink-0 place-items-center rounded-lg text-[13px] font-bold ${
-            group.kind === "lot"
-              ? "bg-late-bg text-late"
-              : "bg-soon-bg text-soon-ink"
-          }`}
-        >
-          {vocs.length}
-        </span>
-        <div className="min-w-0">
-          <h2 className="card-title break-words">{groupTitle(group)}</h2>
-          <p className="text-xs font-medium text-ink-3">미종결 {vocs.length}건</p>
+      <div className="px-[22px]">
+        <div className="flex flex-wrap items-center gap-2">
+          <GroupKindBadge kind={group.kind} />
+          <h2 className="card-title min-w-0 break-words">{groupTitle(group)}</h2>
         </div>
+        <p className="mt-1 text-xs font-medium text-ink-3">
+          아직 끝나지 않은 VOC {vocs.length}건 · {GROUP_KINDS[group.kind].hint}
+        </p>
       </div>
       <div className="mt-3 overflow-x-auto">
         <table className="w-full min-w-[36rem] border-collapse text-left">
