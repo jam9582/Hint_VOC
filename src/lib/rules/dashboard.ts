@@ -30,7 +30,7 @@ export function getDueLabel(dueAt: string, today: string) {
   if (days < 0) return `${-days}일 초과`;
   if (days === 0) return "오늘";
   if (days === 1) return "내일";
-  return dueAt.slice(5);
+  return `${Number(dueAt.slice(5, 7))}월 ${Number(dueAt.slice(8, 10))}일`;
 }
 
 export type StageCount = {

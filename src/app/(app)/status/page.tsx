@@ -296,7 +296,7 @@ async function StatusContent({
         />
         <div className="col-span-full flex items-center gap-3">
           <button type="submit" className="btn btn-sm">
-            거르기
+            완료
           </button>
           <Link href="/status" className="text-link text-xs">
             초기화
