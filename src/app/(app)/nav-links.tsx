@@ -8,14 +8,19 @@ import { RAIL_ITEM } from "./rail-item";
 export function RailLink({
   href,
   label,
+  alsoActiveOn,
   children,
 }: {
   href: string;
   label: string;
+  /** 메뉴에 없는 하위 화면에서도 이 메뉴를 켠다. */
+  alsoActiveOn?: string;
   children: ReactNode;
 }) {
   const pathname = usePathname();
-  const active = pathname === href || pathname.startsWith(`${href}/`);
+  const active = [href, alsoActiveOn].some(
+    (path) => path && (pathname === path || pathname.startsWith(`${path}/`)),
+  );
 
   return (
     <Link

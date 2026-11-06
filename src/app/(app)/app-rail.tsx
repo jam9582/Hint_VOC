@@ -25,12 +25,6 @@ export const RAIL_ICONS = {
       <path d="M12 4v16M4 12h16" />
     </svg>
   ),
-  detail: (
-    <svg {...iconProps}>
-      <path d="M5 4h10l4 4v12H5z" />
-      <path d="M9 12h6M9 16h6" />
-    </svg>
-  ),
   admin: (
     <svg {...iconProps}>
       <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
@@ -60,14 +54,11 @@ export function AppRail({ children }: { children: ReactNode }) {
         className="flex items-center gap-1 lg:flex-col lg:items-stretch lg:gap-3"
       >
         <Suspense>
-          <RailLink href="/status" label="현황">
+          <RailLink href="/status" label="현황" alsoActiveOn="/vocs">
             {RAIL_ICONS.status}
           </RailLink>
           <RailLink href="/register" label="등록">
             {RAIL_ICONS.register}
-          </RailLink>
-          <RailLink href="/vocs" label="상세">
-            {RAIL_ICONS.detail}
           </RailLink>
         </Suspense>
       </nav>
