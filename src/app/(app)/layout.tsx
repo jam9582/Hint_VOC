@@ -6,7 +6,7 @@ import { UserMenu } from "./user-menu";
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-dvh w-full lg:grid lg:grid-cols-[72px_minmax(0,1fr)] print:block">
+    <div className="min-h-dvh w-full lg:grid lg:grid-cols-[136px_minmax(0,1fr)] print:block">
       <AppRail>
         <Suspense>
           <UserMenu />

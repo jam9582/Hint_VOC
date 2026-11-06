@@ -44,20 +44,20 @@ export const RAIL_ICONS = {
   ),
 };
 
-/** 왼쪽 아이콘 줄. 폭이 좁으면 맨 위 가로 줄이 된다. */
+/** 왼쪽 메뉴. 폭이 좁으면 맨 위 가로 줄이 된다. */
 export function AppRail({ children }: { children: ReactNode }) {
   return (
-    <aside className="sticky top-0 z-20 flex items-center gap-4 bg-card px-4 py-2 shadow-card lg:h-dvh lg:flex-col lg:gap-5 lg:px-0 lg:py-5 print:hidden">
+    <aside className="sticky top-0 z-20 flex items-center gap-2 overflow-x-auto bg-card px-3 py-1.5 shadow-card lg:h-dvh lg:flex-col lg:items-stretch lg:gap-5 lg:overflow-visible lg:px-3 lg:py-5 print:hidden">
       <Link
         href="/"
         aria-label="VOC 통합 관리 첫 화면"
-        className="grid size-[34px] shrink-0 place-items-center rounded-[9px] bg-primary text-[13px] font-bold text-white"
+        className="grid size-[34px] shrink-0 place-items-center rounded-[9px] bg-primary text-[13px] font-bold text-white lg:ml-2 lg:self-start"
       >
         8D
       </Link>
       <nav
         aria-label="주 메뉴"
-        className="flex items-center gap-2 lg:flex-col lg:gap-3"
+        className="flex items-center gap-1 lg:flex-col lg:items-stretch lg:gap-3"
       >
         <Suspense>
           <RailLink href="/status" label="현황">

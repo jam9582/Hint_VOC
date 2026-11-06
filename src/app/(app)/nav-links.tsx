@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
+import { RAIL_ITEM } from "./rail-item";
 
 export function RailLink({
   href,
@@ -19,16 +20,15 @@ export function RailLink({
   return (
     <Link
       href={href}
-      aria-label={label}
-      title={label}
       aria-current={active ? "page" : undefined}
-      className={`grid size-10 place-items-center rounded-lg transition-colors ${
+      className={`${RAIL_ITEM} ${
         active
           ? "bg-primary-bg text-primary"
           : "text-ink-3 hover:bg-inset hover:text-ink-2"
       }`}
     >
       {children}
+      {label}
     </Link>
   );
 }
