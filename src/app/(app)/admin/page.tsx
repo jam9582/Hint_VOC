@@ -7,16 +7,18 @@ import {
   type CodeGroup,
 } from "@/types/codes";
 import type { CodeRow } from "@/types/database";
+import { PageHeader } from "../page-header";
 import { ActionForm } from "./action-form";
 import { addCodeAction, updateCodeAction, updateRoleAction } from "./actions";
 
-const fieldClass = "rounded border border-zinc-400 bg-white p-1";
-const buttonClass = "rounded border border-zinc-500 px-3 py-1 text-sm";
+const fieldClass =
+  "min-h-8 rounded-md border border-line bg-card px-2 py-1 text-[13px] font-medium";
+const buttonClass = "btn btn-light btn-sm";
 
 function CodeItem({ row, locked }: { row: CodeRow; locked: boolean }) {
   if (locked) {
     return (
-      <li className="text-sm">
+      <li className="text-[13px] font-medium text-ink-2">
         {row.code} · {row.label}
       </li>
     );
@@ -63,8 +65,8 @@ function CodeItem({ row, locked }: { row: CodeRow; locked: boolean }) {
 function CodeGroupBlock({ group, rows }: { group: CodeGroup; rows: CodeRow[] }) {
   const locked = LOCKED_CODE_GROUPS.includes(group);
   return (
-    <details data-group={group} className="rounded border border-zinc-300 p-3">
-      <summary className="cursor-pointer font-medium">
+    <details data-group={group} className="rounded-lg border border-line p-3.5">
+      <summary className="cursor-pointer text-[13px] font-semibold">
         {group} ({rows.length}){locked && " · 규칙에서 쓰는 값이라 바꿀 수 없음"}
       </summary>
       <ul className="mt-3 flex flex-col gap-2">
@@ -76,7 +78,7 @@ function CodeGroupBlock({ group, rows }: { group: CodeGroup; rows: CodeRow[] }) 
         <ActionForm
           action={addCodeAction}
           resetOnSuccess
-          className="mt-3 flex flex-wrap items-center gap-2 border-t border-zinc-200 pt-3 text-sm"
+          className="mt-3 flex flex-wrap items-center gap-2 border-t border-line pt-3 text-sm"
         >
           <input type="hidden" name="code_group" value={group} />
           <input
@@ -112,11 +114,11 @@ async function AdminContent() {
 
   return (
     <>
-      <h1 className="text-xl font-semibold">관리자</h1>
+      <PageHeader title="관리자" />
 
-      <section className="mt-6">
-        <h2 className="font-medium">코드 관리</h2>
-        <p className="mt-1 text-sm text-zinc-600">
+      <section className="card p-5">
+        <h2 className="card-title">코드 관리</h2>
+        <p className="mt-1 text-xs font-medium text-ink-3">
           기존 VOC가 쓰는 값이라 코드는 지우지 않고 사용을 끕니다. 코드 값은 바꿀
           수 없습니다.
         </p>
@@ -131,11 +133,15 @@ async function AdminContent() {
         </div>
       </section>
 
-      <section className="mt-8">
-        <h2 className="font-medium">계정 관리</h2>
-        <ul className="mt-3 flex flex-col gap-3">
+      <section className="card mt-[22px] p-5">
+        <h2 className="card-title">계정 관리</h2>
+        <ul className="mt-3 flex flex-col divide-y divide-line">
           {accounts.map((account) => (
-            <li key={account.id} data-account={account.email ?? account.id}>
+            <li
+              key={account.id}
+              data-account={account.email ?? account.id}
+              className="py-3 first:pt-0 last:pb-0"
+            >
               <ActionForm
                 action={updateRoleAction}
                 className="flex flex-wrap items-center gap-2 text-sm"
@@ -145,7 +151,9 @@ async function AdminContent() {
                   {account.name} · {account.email ?? "메일 없음"}
                 </span>
                 {account.id === admin.id ? (
-                  <span>관리자 계정 (본인)</span>
+                  <span className="tag bg-primary-bg text-primary">
+                    관리자 계정 (본인)
+                  </span>
                 ) : (
                   <>
                     <select
@@ -173,8 +181,8 @@ async function AdminContent() {
 
 export default function AdminPage() {
   return (
-    <main className="mx-auto w-full max-w-3xl p-4 sm:p-8">
-      <Suspense fallback={<p>확인 중입니다.</p>}>
+    <main className="mx-auto w-full max-w-4xl px-4 py-5 lg:px-7 lg:py-[22px]">
+      <Suspense fallback={<div className="card h-96 animate-pulse" />}>
         <AdminContent />
       </Suspense>
     </main>

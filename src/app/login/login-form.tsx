@@ -3,14 +3,14 @@
 import { useActionState } from "react";
 import { login } from "./actions";
 
-const inputClass = "mt-1 w-full rounded border border-zinc-400 p-2";
+const inputClass = "input";
 
 export function LoginForm() {
   const [state, action, pending] = useActionState(login, undefined);
 
   return (
     <form action={action} className="mt-6 flex flex-col gap-4">
-      <label className="block">
+      <label className="field-label">
         이메일
         <input
           name="email"
@@ -20,7 +20,7 @@ export function LoginForm() {
           className={inputClass}
         />
       </label>
-      <label className="block">
+      <label className="field-label">
         비밀번호
         <input
           name="password"
@@ -31,15 +31,11 @@ export function LoginForm() {
         />
       </label>
       {state?.error && (
-        <p role="alert" className="text-red-700">
+        <p role="alert" className="text-[13px] font-semibold text-late">
           {state.error}
         </p>
       )}
-      <button
-        type="submit"
-        disabled={pending}
-        className="rounded bg-zinc-900 p-2 text-white disabled:opacity-50"
-      >
+      <button type="submit" disabled={pending} className="btn w-full">
         {pending ? "로그인 중" : "로그인"}
       </button>
     </form>

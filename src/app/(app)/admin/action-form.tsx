@@ -36,7 +36,7 @@ export function ActionForm({
       {result && (
         <p
           role={result.ok ? "status" : "alert"}
-          className={`text-sm ${result.ok ? "text-green-800" : "text-red-700"}`}
+          className={`text-xs font-semibold ${result.ok ? "text-ok" : "text-late"}`}
         >
           {result.message}
         </p>

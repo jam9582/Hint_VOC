@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { requireUser } from "@/lib/auth";
 import { toSeoulDateTimeLocal } from "@/lib/dates";
 import { listActiveCodes, toCodeOptions } from "@/lib/db/codes";
+import { PageHeader } from "../page-header";
 import { RegisterForm } from "./register-form";
 
 async function RegisterContent() {
@@ -18,9 +19,9 @@ async function RegisterContent() {
 
 export default function RegisterPage() {
   return (
-    <main className="mx-auto w-full max-w-5xl p-4 sm:p-8">
-      <h1 className="text-xl font-semibold">VOC 등록</h1>
-      <Suspense fallback={<p className="mt-4">불러오는 중입니다.</p>}>
+    <main className="px-4 py-5 lg:px-7 lg:py-[22px]">
+      <PageHeader title="VOC 등록" />
+      <Suspense fallback={<div className="card h-96 animate-pulse" />}>
         <RegisterContent />
       </Suspense>
     </main>

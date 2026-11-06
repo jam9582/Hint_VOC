@@ -1,33 +1,25 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
+import { AppRail } from "./app-rail";
+import { SidePanel } from "./side-panel";
 import { UserMenu } from "./user-menu";
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <>
-      <header className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-300 p-4">
-        <div className="flex flex-wrap items-center gap-4">
-          <Link href="/" className="font-semibold">
-            VOC 통합 관리 (8D)
-          </Link>
-          <nav className="flex gap-3 text-sm">
-            <Link href="/register" className="underline">
-              등록
-            </Link>
-            <Link href="/status" className="underline">
-              현황
-            </Link>
-            <Link href="/vocs" className="underline">
-              상세
-            </Link>
-          </nav>
-        </div>
+    <div className="min-h-dvh w-full lg:grid lg:grid-cols-[72px_210px_minmax(0,1fr)]">
+      <AppRail>
         <Suspense>
           <UserMenu />
         </Suspense>
-      </header>
-      {children}
-    </>
+      </AppRail>
+      <Suspense
+        fallback={
+          <div className="hidden border-r border-line bg-card lg:block" />
+        }
+      >
+        <SidePanel />
+      </Suspense>
+      <div className="min-w-0">{children}</div>
+    </div>
   );
 }

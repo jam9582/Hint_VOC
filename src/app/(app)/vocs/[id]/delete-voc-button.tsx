@@ -17,7 +17,7 @@ export function DeleteVocButton({ vocId }: { vocId: string }) {
       type="button"
       disabled={pending}
       onClick={handleClick}
-      className="mt-2 rounded border border-red-700 px-3 py-1 text-sm text-red-700 disabled:opacity-50"
+      className="btn btn-danger btn-sm"
     >
       VOC 삭제
     </button>

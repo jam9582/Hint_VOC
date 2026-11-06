@@ -1,9 +1,12 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { requireUser } from "@/lib/auth";
 import { toSeoulDate, toSeoulDateTimeLocal } from "@/lib/dates";
 import { listActiveCodes, toCodeOptions } from "@/lib/db/codes";
 import { getVocDetail, type VocDetail } from "@/lib/db/vocs";
+import { getDueState } from "@/lib/rules/dashboard";
 import {
   STAGE_SECTIONS,
   type StageField,
@@ -11,8 +14,12 @@ import {
 } from "@/lib/rules/stage-fields";
 import { STAGES, type CodeOptions, type Stage } from "@/types/codes";
 import { getTypeDetailFields } from "@/types/type-detail";
+import { DueBadge } from "../../due-badge";
+import { GradeTag } from "../../grade-tag";
 import { HistoryPanel } from "../../history-panel";
+import { PageHeader } from "../../page-header";
 import { SimilarPanel } from "../../similar-panel";
+import { StageProgress } from "../../status/stage-progress";
 import { DeleteVocButton } from "./delete-voc-button";
 import { StageForm } from "./stage-form";
 
@@ -20,12 +27,63 @@ const stageIndex = (stage: Stage) => STAGES.indexOf(stage);
 const formatDateTime = (value: string) =>
   toSeoulDateTimeLocal(new Date(value)).replace("T", " ");
 
+type StepState = "done" | "current" | "later";
+
+const CIRCLE_CLASS: Record<StepState, string> = {
+  done: "bg-ok-bg text-ok",
+  current: "bg-primary text-white shadow-primary",
+  later: "bg-inset text-ink-3",
+};
+
 function Item({ label, value }: { label: string; value: string | number | null }) {
   return (
     <div>
-      <dt className="text-sm text-zinc-600">{label}</dt>
-      <dd className="whitespace-pre-wrap break-words">{value ?? "-"}</dd>
+      <dt className="text-xs font-medium text-ink-3">{label}</dt>
+      <dd className="mt-0.5 text-[13px] font-medium break-words whitespace-pre-wrap">
+        {value ?? "-"}
+      </dd>
     </div>
+  );
+}
+
+/** 왼쪽에 단계 표시, 오른쪽에 내용이 오는 한 줄. */
+function Step({
+  code,
+  title,
+  note,
+  state,
+  stage,
+  children,
+}: {
+  code: string;
+  title: string;
+  note: string;
+  state: StepState;
+  stage?: Stage;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      data-stage={stage}
+      className="grid gap-3 border-t border-line py-4 first:border-t-0 md:grid-cols-[150px_minmax(0,1fr)] md:gap-[18px]"
+    >
+      <div className="flex items-start gap-3">
+        <span
+          className={`grid size-7 shrink-0 place-items-center rounded-full text-[11px] font-bold ${CIRCLE_CLASS[state]}`}
+        >
+          {code}
+        </span>
+        <div>
+          <h2 className="text-sm font-semibold">{title}</h2>
+          <small
+            className={`text-xs font-medium ${state === "current" ? "font-semibold text-primary" : "text-ink-3"}`}
+          >
+            {note}
+          </small>
+        </div>
+      </div>
+      <div className="min-w-0">{children}</div>
+    </section>
   );
 }
 
@@ -40,19 +98,13 @@ function ReceiptSection({
 }) {
   const detail = (voc.type_detail ?? {}) as Record<string, string | number>;
   return (
-    <section className="rounded border border-zinc-300 p-4">
-      <h2 className="font-medium">D0~D2 접수</h2>
-      <dl className="mt-3 grid gap-3 sm:grid-cols-2">
+    <Step code="D2" title="D0~D2 접수" note="완료" state="done">
+      <dl className="grid gap-3 sm:grid-cols-2 2xl:grid-cols-3">
         <Item label="접수 일시" value={formatDateTime(voc.received_at)} />
         <Item label="접수 경로" value={labelOf("channel", voc.channel)} />
-        <Item label="등급" value={labelOf("grade", voc.grade)} />
-        <Item label="담당" value={voc.owner} />
         <Item label="팀 구성" value={team} />
         <Item label="차대번호" value={voc.vin} />
         <Item label="주행거리 (km)" value={voc.mileage_km} />
-        <Item label="유형" value={labelOf("voc_type", voc.voc_type)} />
-        <Item label="부위 대분류" value={labelOf("system", voc.system)} />
-        <Item label="부품명" value={voc.part_name} />
         <Item label="부품 번호" value={voc.part_no} />
         <Item label="발생 빈도" value={labelOf("frequency", voc.frequency)} />
         <Item label="재현 여부" value={labelOf("reproduced", voc.reproduced)} />
@@ -68,7 +120,7 @@ function ReceiptSection({
         <Item label="증상 설명" value={voc.symptom} />
         <Item label="사진·영상 링크" value={voc.media_links} />
       </dl>
-    </section>
+    </Step>
   );
 }
 
@@ -82,7 +134,7 @@ function ReadOnlyFields({
   labelOf: (group: keyof CodeOptions, value: string) => string;
 }) {
   return (
-    <dl className="mt-3 grid gap-3">
+    <dl className="grid gap-3">
       {fields.map((field) => {
         const value = voc8d[field.key];
         const shown =
@@ -110,16 +162,17 @@ function StageBlock({
   const isCurrent = section.stage === voc.stage;
   const isLater = stageIndex(section.stage) > stageIndex(voc.stage);
   const hasValue = section.fields.some((field) => voc8d[field.key]);
+  const state: StepState = isCurrent ? "current" : isLater ? "later" : "done";
+  const note = { current: "지금 단계", later: "대기", done: "완료" }[state];
 
   return (
-    <section
-      data-stage={section.stage}
-      className={`rounded border p-4 ${isCurrent ? "border-zinc-900" : "border-zinc-300"}`}
+    <Step
+      code={section.stage.slice(0, 2)}
+      title={section.title}
+      note={note}
+      state={state}
+      stage={section.stage}
     >
-      <h2 className="font-medium">
-        {section.title}
-        {isCurrent && " (지금 단계)"}
-      </h2>
       {isCurrent && (
         <StageForm
           key={voc.stage}
@@ -133,7 +186,9 @@ function StageBlock({
         />
       )}
       {!isCurrent && isLater && !hasValue && (
-        <p className="mt-2 text-sm text-zinc-600">아직 시작 전입니다.</p>
+        <p className="pt-1 text-[13px] font-medium text-ink-3">
+          아직 시작 전입니다.
+        </p>
       )}
       {!isCurrent && (!isLater || hasValue) && (
         <ReadOnlyFields
@@ -142,28 +197,40 @@ function StageBlock({
           labelOf={labelOf}
         />
       )}
-    </section>
+    </Step>
   );
 }
 
 function StageLogs({ logs }: { logs: VocDetail["logs"] }) {
   return (
-    <section>
-      <h3 className="font-medium">단계 이력</h3>
-      <ol className="mt-1 flex flex-col gap-2 text-sm">
+    <section className="card p-5">
+      <h3 className="card-title">단계 이력</h3>
+      <ol className="mt-3 flex flex-col gap-3">
         {logs.map((log) => (
-          <li key={log.log_id}>
-            <p>
-              {log.from_stage ?? "접수"} → {log.to_stage}
-            </p>
-            <p className="text-zinc-600">
-              {formatDateTime(log.changed_at)} · {log.changed_by}
-            </p>
-            {log.note && <p className="break-words">{log.note}</p>}
+          <li key={log.log_id} className="flex gap-2.5 text-xs font-medium">
+            <i className="mt-[5px] size-2 shrink-0 rounded-full bg-chart" />
+            <div className="min-w-0">
+              <p className="font-semibold">
+                {log.from_stage ?? "접수"} → {log.to_stage}
+              </p>
+              <p className="text-ink-3">
+                {formatDateTime(log.changed_at)} · {log.changed_by}
+              </p>
+              {log.note && <p className="break-words text-ink-2">{log.note}</p>}
+            </div>
           </li>
         ))}
       </ol>
     </section>
+  );
+}
+
+function Fact({ label, value }: { label: string; value: string }) {
+  return (
+    <span className="rounded-xl bg-inset px-2.5 py-[3px] text-xs font-medium text-ink-2">
+      {label}
+      <b className="ml-1 font-semibold text-ink">{value}</b>
+    </span>
   );
 }
 
@@ -181,20 +248,49 @@ async function VocContent({ params }: { params: Promise<{ id: string }> }) {
     options[group]?.find((option) => option.value === value)?.label ?? value;
   const { voc, voc8d, logs } = detail;
   const closed = voc.stage === "종결";
-  const overdue = !closed && voc.due_at < toSeoulDate(new Date());
+  const today = toSeoulDate(new Date());
+  const overdue = !closed && voc.due_at < today;
 
   return (
     <>
-      <h1 className="text-xl font-semibold">{voc.voc_id}</h1>
-      <p className={`mt-1 ${overdue ? "text-red-700" : ""}`}>
-        현재 단계 {voc.stage}
-        {closed
-          ? ` · 종결 ${voc.closed_at ? formatDateTime(voc.closed_at) : ""}`
-          : ` · 기한 ${voc.due_at}${overdue ? " (기한 초과)" : ""}`}
-      </p>
-      {user.role === "admin" && <DeleteVocButton vocId={voc.voc_id} />}
-      <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
-        <div className="flex flex-col gap-4">
+      <PageHeader title={voc.voc_id}>
+        <Link href="/status" className="text-link text-[13px]">
+          현황으로 돌아가기
+        </Link>
+      </PageHeader>
+
+      <section className="card mb-[22px] flex flex-wrap items-center justify-between gap-4 px-6 py-5">
+        <div className="min-w-0">
+          <p className="text-xs font-medium text-ink-3">
+            {toSeoulDate(new Date(voc.received_at))} 접수 ·{" "}
+            {labelOf("channel", voc.channel)}
+          </p>
+          <h2 className="mt-0.5 mb-2 text-[19px] font-bold tracking-tight break-words">
+            {voc.part_name}
+          </h2>
+          <div className="flex flex-wrap items-center gap-2">
+            <GradeTag grade={voc.grade} label={labelOf("grade", voc.grade)} />
+            <Fact label="유형" value={labelOf("voc_type", voc.voc_type)} />
+            <Fact label="부위" value={labelOf("system", voc.system)} />
+            <Fact label="담당" value={voc.owner} />
+          </div>
+        </div>
+        <div className="flex flex-col items-start gap-3 sm:items-end">
+          <p className="flex items-center gap-2 text-xs font-medium text-ink-3">
+            {closed
+              ? voc.closed_at && `종결 ${formatDateTime(voc.closed_at)}`
+              : `기한 ${voc.due_at}`}
+            {getDueState(voc.stage, voc.due_at, today) !== "ok" && (
+              <DueBadge stage={voc.stage} dueAt={voc.due_at} today={today} />
+            )}
+          </p>
+          <StageProgress stage={voc.stage} overdue={overdue} wide />
+          {user.role === "admin" && <DeleteVocButton vocId={voc.voc_id} />}
+        </div>
+      </section>
+
+      <div className="grid gap-[22px] xl:grid-cols-[minmax(0,1fr)_300px]">
+        <div className="card min-w-0 px-6 py-2">
           <ReceiptSection voc={voc} team={voc8d.team} labelOf={labelOf} />
           {STAGE_SECTIONS.map((section) => (
             <StageBlock
@@ -206,9 +302,11 @@ async function VocContent({ params }: { params: Promise<{ id: string }> }) {
             />
           ))}
         </div>
-        <aside className="flex h-fit flex-col gap-4 rounded border border-zinc-300 p-4 lg:sticky lg:top-4">
-          <HistoryPanel vin={voc.vin} partNo={voc.part_no ?? ""} />
-          <div className="border-t border-zinc-300 pt-4">
+        <aside className="flex h-fit min-w-0 flex-col gap-[22px]">
+          <div className="card p-5">
+            <HistoryPanel vin={voc.vin} partNo={voc.part_no ?? ""} />
+          </div>
+          <div className="card p-5">
             <SimilarPanel
               vin={voc.vin}
               partNo={voc.part_no ?? ""}
@@ -217,9 +315,7 @@ async function VocContent({ params }: { params: Promise<{ id: string }> }) {
               excludeVocId={voc.voc_id}
             />
           </div>
-          <div className="border-t border-zinc-300 pt-4">
-            <StageLogs logs={logs} />
-          </div>
+          <StageLogs logs={logs} />
         </aside>
       </div>
     </>
@@ -232,8 +328,8 @@ export default function VocPage({
   params: Promise<{ id: string }>;
 }) {
   return (
-    <main className="mx-auto w-full max-w-5xl p-4 sm:p-8">
-      <Suspense fallback={<p>불러오는 중입니다.</p>}>
+    <main className="px-4 py-5 lg:px-7 lg:py-[22px]">
+      <Suspense fallback={<div className="card h-96 animate-pulse" />}>
         <VocContent params={params} />
       </Suspense>
     </main>

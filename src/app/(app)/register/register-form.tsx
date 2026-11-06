@@ -12,7 +12,7 @@ import { HistoryPanel } from "../history-panel";
 import { SimilarPanel } from "../similar-panel";
 import { registerVocAction, type RegisterResult } from "./actions";
 
-const inputClass = "mt-1 w-full rounded border border-zinc-400 bg-white p-2";
+const inputClass = "input";
 
 function Field({
   label,
@@ -24,9 +24,9 @@ function Field({
   children: ReactNode;
 }) {
   return (
-    <label className="block">
+    <label className="field-label">
       {label}
-      {required && <span className="text-red-700"> *</span>}
+      {required && <span className="text-late"> *</span>}
       {children}
     </label>
   );
@@ -105,7 +105,7 @@ function SaveMessage({ result }: { result?: RegisterResult }) {
           ...result.problems.invalid,
         ];
   return (
-    <div role="alert" className="text-red-700">
+    <div role="alert" className="text-[13px] font-semibold text-late">
       {messages.map((message) => (
         <p key={message}>{message}</p>
       ))}
@@ -131,8 +131,8 @@ function FormFields({
   const list = (group: CodeGroup) => options[group] ?? [];
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
-      <div>
+    <div className="grid gap-[22px] xl:grid-cols-[minmax(0,1fr)_300px]">
+      <div className="card min-w-0 p-5 sm:p-6">
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="접수 일시" required>
             <input
@@ -242,8 +242,10 @@ function FormFields({
         </div>
 
         {vocType && (
-          <fieldset className="mt-4 rounded border border-zinc-300 p-4">
-            <legend className="px-1 font-medium">유형별 추가 항목</legend>
+          <fieldset className="mt-5 rounded-lg border border-line bg-inset p-4">
+            <legend className="px-1 text-[13px] font-semibold">
+              유형별 추가 항목
+            </legend>
             <div className="grid gap-4 sm:grid-cols-2">
               {getTypeDetailFields(vocType).map((field) => (
                 <TypeDetailInput
@@ -269,16 +271,18 @@ function FormFields({
           <button
             type="submit"
             disabled={pending}
-            className="w-full shrink-0 rounded bg-zinc-900 p-2 text-white disabled:opacity-50 sm:w-auto sm:px-8"
+            className="btn w-full shrink-0 sm:w-auto sm:px-8"
           >
             {pending ? "저장 중" : "저장"}
           </button>
           {saveMessage}
         </div>
       </div>
-      <aside className="h-fit rounded border border-zinc-300 p-4 lg:sticky lg:top-4">
-        <HistoryPanel vin={vin} partNo={partNo} />
-        <div className="mt-4 border-t border-zinc-300 pt-4">
+      <aside className="flex h-fit flex-col gap-[22px] xl:sticky xl:top-[22px]">
+        <div className="card p-5">
+          <HistoryPanel vin={vin} partNo={partNo} />
+        </div>
+        <div className="card p-5">
           <SimilarPanel
             vin={vin}
             partNo={partNo}
@@ -324,7 +328,7 @@ export function RegisterForm({
       {result && "vocId" in result && (
         <p
           role="status"
-          className="mb-4 rounded bg-green-100 p-3 text-green-900"
+          className="mb-4 rounded-lg bg-ok-bg px-4 py-3 text-[13px] font-semibold text-ok"
         >
           {result.vocId} 등록을 마쳤습니다.
         </p>

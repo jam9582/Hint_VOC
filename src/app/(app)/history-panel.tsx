@@ -9,8 +9,8 @@ const VIN_LENGTH = 17;
 function Row({ label, value }: { label: string; value: string | null }) {
   return (
     <div className="flex justify-between gap-4">
-      <dt className="text-zinc-600">{label}</dt>
-      <dd className="text-right">{value ?? "-"}</dd>
+      <dt className="text-ink-3">{label}</dt>
+      <dd className="text-right font-semibold break-all">{value ?? "-"}</dd>
     </div>
   );
 }
@@ -24,8 +24,10 @@ function Section({
 }) {
   return (
     <section className="mt-4 first:mt-0">
-      <h3 className="font-medium">{title}</h3>
-      <div className="mt-1 text-sm">{children}</div>
+      <h3 className="card-title">{title}</h3>
+      <div className="mt-2.5 flex flex-col gap-2 text-[13px] font-medium [&>dl]:flex [&>dl]:flex-col [&>dl]:gap-2">
+        {children}
+      </div>
     </section>
   );
 }
@@ -39,15 +41,17 @@ export function HistoryPanel({ vin, partNo }: { vin: string; partNo: string }) {
 
   if (!canLookup) {
     return (
-      <p className="text-sm">차대번호 17자를 입력하면 이력이 나타납니다.</p>
+      <p className="text-[13px] text-ink-2">
+        차대번호 17자를 입력하면 이력이 나타납니다.
+      </p>
     );
   }
   if (result.status === "loading") {
-    return <p className="text-sm">이력을 찾는 중입니다.</p>;
+    return <p className="text-[13px] text-ink-2">이력을 찾는 중입니다.</p>;
   }
   if (result.status === "failed") {
     return (
-      <p role="alert" className="text-sm text-red-700">
+      <p role="alert" className="text-[13px] font-semibold text-late">
         이력을 불러오지 못했습니다. 잠시 뒤 다시 시도해 주세요.
       </p>
     );

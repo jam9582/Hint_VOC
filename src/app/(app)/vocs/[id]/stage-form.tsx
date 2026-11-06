@@ -10,7 +10,7 @@ import {
   type StageActionResult,
 } from "./actions";
 
-const inputClass = "mt-1 w-full rounded border border-zinc-400 bg-white p-2";
+const inputClass = "input";
 
 function advanceLabel(stage: Stage, result: string) {
   if (stage === "D7-D8") return "종결";
@@ -88,11 +88,11 @@ export function StageForm({
     });
 
   return (
-    <div className="mt-3 flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       {fields.map((field) => (
-        <label key={field.key} className="block">
+        <label key={field.key} className="field-label">
           {field.label}
-          {field.required && <span className="text-red-700"> *</span>}
+          {field.required && <span className="text-late"> *</span>}
           <FieldInput
             field={field}
             value={values[field.key] ?? ""}
@@ -109,7 +109,7 @@ export function StageForm({
           type="button"
           disabled={pending}
           onClick={() => run(saveStageAction)}
-          className="rounded border border-zinc-500 px-6 py-2 disabled:opacity-50"
+          className="btn btn-light"
         >
           저장
         </button>
@@ -117,19 +117,21 @@ export function StageForm({
           type="button"
           disabled={pending || missing.length > 0}
           onClick={() => run(advanceStageAction)}
-          className="rounded bg-zinc-900 px-6 py-2 text-white disabled:opacity-40"
+          className="btn"
         >
           {advanceLabel(stage, values.d6_result ?? "")}
         </button>
         {missing.length > 0 && (
-          <p className="text-red-700">빠진 항목: {missing.join(", ")}</p>
+          <p className="text-xs font-semibold text-late">
+            빠진 항목: {missing.join(", ")}
+          </p>
         )}
       </div>
 
       {result && (
         <p
           role={result.ok ? "status" : "alert"}
-          className={result.ok ? "text-green-800" : "text-red-700"}
+          className={`text-[13px] font-semibold ${result.ok ? "text-ok" : "text-late"}`}
         >
           {result.message}
           {result.missing?.length ? ` (${result.missing.join(", ")})` : ""}

@@ -43,14 +43,14 @@ export function SimilarPanel({
 
   return (
     <section>
-      <h3 className="font-medium">유사 VOC</h3>
-      <div className="mt-1 text-sm">
+      <h3 className="card-title">유사 VOC</h3>
+      <div className="mt-2.5 text-[13px] font-medium text-ink-2">
         {!canLookup && (
           <p>차대번호, 부품 번호, 유형, 부위를 입력하면 나타납니다.</p>
         )}
         {canLookup && result.status === "loading" && <p>찾는 중입니다.</p>}
         {canLookup && result.status === "failed" && (
-          <p role="alert" className="text-red-700">
+          <p role="alert" className="font-semibold text-late">
             유사 VOC를 불러오지 못했습니다.
           </p>
         )}
@@ -58,14 +58,14 @@ export function SimilarPanel({
           <p>유사 VOC 없음</p>
         )}
         {canLookup && result.status === "ready" && result.data.length > 0 && (
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col divide-y divide-line">
             {result.data.map((voc) => (
-              <li key={voc.voc_id}>
+              <li key={voc.voc_id} className="py-2.5 first:pt-0 last:pb-0">
                 <a
                   href={`/vocs/${voc.voc_id}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-medium underline"
+                  className="text-link"
                 >
                   {voc.voc_id}
                 </a>
@@ -73,7 +73,7 @@ export function SimilarPanel({
                   {toSeoulDate(new Date(voc.received_at))} · {voc.part_name} ·{" "}
                   {voc.stage}
                 </p>
-                <p className="text-zinc-600">
+                <p className="text-xs text-ink-3">
                   {voc.matched.map((number) => MATCH_LABELS[number]).join(", ")}
                 </p>
               </li>

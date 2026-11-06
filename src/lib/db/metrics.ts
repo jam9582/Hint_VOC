@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import type { MetricVoc } from "@/lib/rules/metrics";
 import { createClient } from "@/lib/supabase/server";
 import type { ProblemGroup } from "@/types/database";
@@ -28,8 +29,8 @@ async function readAll<T>(
   }
 }
 
-/** 지표 계산에 쓸 VOC 전체. */
-export async function listMetricVocs(): Promise<MetricVoc[]> {
+/** 지표 계산에 쓸 VOC 전체. 한 요청에서 여러 곳이 써도 한 번만 읽는다. */
+export const listMetricVocs = cache(async (): Promise<MetricVoc[]> => {
   const supabase = await createClient();
   const [vocs, causes] = await Promise.all([
     readAll((from, to) =>
@@ -49,13 +50,13 @@ export async function listMetricVocs(): Promise<MetricVoc[]> {
     ...voc,
     d4_done_at: doneAt.get(voc.voc_id) ?? null,
   }));
-}
+});
 
-export async function listProblemGroups(): Promise<ProblemGroup[]> {
+export const listProblemGroups = cache(async (): Promise<ProblemGroup[]> => {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("voc_problem_groups")
     .select("kind, part_no, part_lot, voc_type, system, voc_ids");
   if (error) throw new Error(error.message);
   return data;
-}
+});

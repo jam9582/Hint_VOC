@@ -13,29 +13,55 @@ function groupTitle(group: ProblemGroup) {
 export async function ProblemWarnings() {
   await requireUser();
   const groups = await listProblemGroups();
-  if (groups.length === 0) return null;
 
   return (
-    <section
-      role="alert"
-      className="mt-4 rounded border border-amber-500 bg-amber-50 p-3 text-sm text-amber-950"
-    >
-      <h2 className="font-medium">같은 문제 묶음 경고</h2>
-      <ul className="mt-1 flex flex-col gap-1">
-        {groups.map((group) => (
-          <li key={groupTitle(group)}>
-            {groupTitle(group)}: 미종결 {group.voc_ids.length}건 ·{" "}
-            {group.voc_ids.map((vocId, index) => (
-              <span key={vocId}>
-                {index > 0 && ", "}
-                <Link href={`/vocs/${vocId}`} className="underline">
-                  {vocId}
-                </Link>
+    <section id="groups" className="card h-fit scroll-mt-20 p-5">
+      <h2 className="card-title">같은 문제 묶음</h2>
+      <p className="mt-0.5 mb-3.5 text-xs font-medium text-ink-3">
+        같은 LOT 또는 같은 부품·유형의 미종결 VOC
+      </p>
+      {groups.length === 0 ? (
+        <p className="text-[13px] text-ink-2">묶인 VOC가 없습니다.</p>
+      ) : (
+        <ul role="alert" className="flex flex-col gap-3">
+          {groups.map((group) => (
+            <li
+              key={groupTitle(group)}
+              className="flex gap-3 rounded-lg border border-line p-3.5"
+            >
+              <span
+                className={`grid size-10 shrink-0 place-items-center rounded-lg text-[13px] font-bold ${
+                  group.kind === "lot"
+                    ? "bg-late-bg text-late"
+                    : "bg-soon-bg text-soon-ink"
+                }`}
+              >
+                {group.voc_ids.length}
               </span>
-            ))}
-          </li>
-        ))}
-      </ul>
+              <div className="min-w-0">
+                <p className="text-[13px] font-semibold break-words">
+                  {groupTitle(group)}
+                </p>
+                <p className="mt-0.5 text-xs font-medium text-ink-2">
+                  미종결 {group.voc_ids.length}건
+                </p>
+                <div className="mt-1.5 flex flex-wrap gap-1">
+                  {group.voc_ids.map((vocId) => (
+                    <Link
+                      key={vocId}
+                      href={`/vocs/${vocId}`}
+                      aria-label={vocId}
+                      className="rounded bg-inset px-1.5 py-0.5 text-[10px] font-semibold text-ink-2 hover:text-primary"
+                    >
+                      {vocId.slice(-4)}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
