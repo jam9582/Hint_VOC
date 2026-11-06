@@ -11,9 +11,12 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           <Link href="/" className="font-semibold">
             VOC 통합 관리 (8D)
           </Link>
-          <nav className="text-sm">
+          <nav className="flex gap-3 text-sm">
             <Link href="/register" className="underline">
               등록
+            </Link>
+            <Link href="/status" className="underline">
+              현황
             </Link>
           </nav>
         </div>

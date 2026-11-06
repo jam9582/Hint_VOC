@@ -443,4 +443,22 @@ revoke execute on function public.find_similar_vocs(text, text, text, text, text
 grant execute on function public.find_similar_vocs(text, text, text, text, text)
   to authenticated, service_role;
 
+-- 현황 목록용 뷰. 7장 표는 바꾸지 않고 차종만 붙여 읽는다. (PRD 15장 결정 14)
+create view public.voc_list with (security_invoker = true) as
+  select v.*, x.model
+    from public.voc v
+    left join public.vehicle x on x.vin = v.vin;
+
+-- 현황의 차종·담당 거르기 목록.
+create view public.voc_filter_options with (security_invoker = true) as
+  select distinct 'model'::text as kind, model::text as value
+    from public.vehicle
+   where model is not null
+  union
+  select distinct 'owner'::text, owner::text
+    from public.voc;
+
+revoke all on public.voc_list, public.voc_filter_options from anon, authenticated;
+grant select on public.voc_list, public.voc_filter_options to authenticated, service_role;
+
 commit;

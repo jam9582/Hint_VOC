@@ -112,6 +112,9 @@ export type ProfileRow = {
   created_at: string;
 };
 
+/** 현황 목록 한 줄. voc에 vehicle의 차종을 붙인 뷰다. */
+export type VocListRow = VocRow & { model: string | null };
+
 /** 유사 VOC 한 건. matched는 맞은 조건 번호(1, 2, 3)다. */
 export type SimilarVoc = Pick<
   VocRow,
@@ -147,7 +150,13 @@ export type Database = {
       code: Table<CodeRow>;
       profiles: Table<ProfileRow, ProfileInsert>;
     };
-    Views: Record<string, never>;
+    Views: {
+      voc_list: { Row: VocListRow; Relationships: [] };
+      voc_filter_options: {
+        Row: { kind: "model" | "owner"; value: string };
+        Relationships: [];
+      };
+    };
     Functions: {
       register_voc: {
         Args: { p_voc: Json; p_team: string; p_changed_by: string };
