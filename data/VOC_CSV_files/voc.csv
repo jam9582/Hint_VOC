@@ -1,0 +1,2 @@
+﻿voc_id,received_at,channel,grade,owner,vin,mileage_km,voc_type,system,part_name,part_no,symptom,frequency,reproduced,type_detail,media_links,similar_ids,stage,due_at,created_at,closed_at,alerted_on
+VOC-2026-0001,2026-11-06 09:00,사내,기능,품질담당(가상),TEST4M00000000001,0,TRIM,내장,트림 클립,DEMO-TRIM-CLIP-01,협력사 4M 변경으로 트림 클립 금형 이관 후 체결력 편차 증가. 초도품 검사는 합격했으나 양산 중 하루 2~3건 탈거 발생. 입고 검사 기준에 체결력 항목 없음. 발생 원인 및 유출 원인 확정 전.,간헐,확인 전,"{""defect"":""기타""}",,,D3,2026-11-08,2026-11-06 09:00,,

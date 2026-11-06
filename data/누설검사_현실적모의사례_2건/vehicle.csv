@@ -1,0 +1,3 @@
+﻿vin,model,model_year,prod_date,plant,line,shift
+TESTLEAK000000101,모의차종-AC,2026,2026-10-01,모의공장,모의라인-AC,주간
+TESTLEAK000000102,모의차종-AC,2026,2026-10-02,모의공장,모의라인-AC,주간

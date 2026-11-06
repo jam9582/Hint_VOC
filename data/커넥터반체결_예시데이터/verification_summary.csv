@@ -1,0 +1,5 @@
+﻿report_id,period_start,period_end,check_item,sample_count,expected_result,matched_count,unmatched_count,judgement,example_flag
+DEMO-VERIFY-CONN-01,2026-10-13,2026-10-19,완전 체결,50,정상 통과,50,0,합격,가상
+DEMO-VERIFY-CONN-01,2026-10-13,2026-10-19,반체결,50,이송 차단,50,0,합격,가상
+DEMO-VERIFY-CONN-01,2026-10-13,2026-10-19,센서 이상 모사,5,이송 차단,5,0,합격,가상
+DEMO-VERIFY-CONN-01,2026-10-13,2026-10-19,적용 후 EOL,500,관련 통신 에러 없음,500,0,합격,가상

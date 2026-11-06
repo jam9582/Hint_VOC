@@ -1,0 +1,18 @@
+﻿column,data_type,required,input_method,validation
+measurement_id,정수,필수,자동 채번,
+voc_id,문자열,필수,검사 이력 수집 또는 직접 입력,voc.voc_id 참조
+vin,문자열,필수,검사 이력 수집 또는 직접 입력,vehicle.vin 참조; 17자
+sample_id,문자열,필수,검사 이력 수집 또는 직접 입력,
+equipment_id,문자열,필수,검사 이력 수집 또는 직접 입력,
+tested_at,날짜시간,필수,검사 이력 수집 또는 직접 입력,YYYY-MM-DD HH:MM; 한국 시간
+attempt_no,정수,필수,검사 이력 수집 또는 직접 입력,
+ambient_temp_c,소수,필수,검사 이력 수집 또는 직접 입력,섭씨
+part_temp_c,소수,필수,검사 이력 수집 또는 직접 입력,섭씨
+test_gas,문자열,필수,검사 이력 수집 또는 직접 입력,
+set_pressure_kpa,소수,필수,검사 이력 수집 또는 직접 입력,kPa 게이지압
+initial_pressure_kpa,소수,필수,검사 이력 수집 또는 직접 입력,kPa 게이지압
+final_pressure_kpa,소수,필수,검사 이력 수집 또는 직접 입력,kPa 게이지압
+hold_seconds,정수,필수,검사 이력 수집 또는 직접 입력,초
+pressure_drop_kpa,소수,필수,자동 계산,initial_pressure_kpa-final_pressure_kpa
+ng_limit_kpa,소수,필수,검사 이력 수집 또는 직접 입력,kPa
+judgement,문자열,필수,자동 계산,압력강하 > ng_limit_kpa이면 NG; 이하면 OK

@@ -1,0 +1,25 @@
+﻿table,column,data_type,required,input_method,validation
+measurement_example,measurement_id,정수,필수,검사 기록 입력 또는 모의 집계,0 이상
+measurement_example,voc_id,문자열,필수,검사 기록 입력 또는 모의 집계,voc.voc_id 참조
+measurement_example,sample_id,문자열,필수,검사 기록 입력 또는 모의 집계,설명값
+measurement_example,sample_kind,문자열,필수,검사 기록 입력 또는 모의 집계,설명값
+measurement_example,tested_at,날짜시간,필수,검사 기록 입력 또는 모의 집계,YYYY-MM-DD HH:MM; 한국 시간
+measurement_example,attempt_no,정수,필수,검사 기록 입력 또는 모의 집계,0 이상
+measurement_example,ambient_temp_c,소수,필수,검사 기록 입력 또는 모의 집계,섭씨
+measurement_example,part_temp_c,소수,필수,검사 기록 입력 또는 모의 집계,섭씨
+measurement_example,gas_temp_c,소수,필수,검사 기록 입력 또는 모의 집계,섭씨
+measurement_example,warmup_minutes,정수,필수,검사 기록 입력 또는 모의 집계,0 이상
+measurement_example,stabilization_seconds,정수,필수,검사 기록 입력 또는 모의 집계,0 이상
+measurement_example,hold_seconds,정수,필수,검사 기록 입력 또는 모의 집계,0 이상
+measurement_example,initial_pressure_kpa,소수,필수,검사 기록 입력 또는 모의 집계,kPa 게이지압; 압력강하/한계는 kPa 차압
+measurement_example,final_pressure_kpa,소수,필수,검사 기록 입력 또는 모의 집계,kPa 게이지압; 압력강하/한계는 kPa 차압
+measurement_example,pressure_drop_kpa,소수,필수,자동 계산,initial_pressure_kpa-final_pressure_kpa
+measurement_example,ng_limit_kpa,소수,필수,검사 기록 입력 또는 모의 집계,kPa 게이지압; 압력강하/한계는 kPa 차압
+measurement_example,judgement,문자열,필수,자동 계산,"압력강하 > 1.0 kPa이면 NG, 이하면 OK(모의 규격)"
+measurement_example,example_flag,문자열,필수,검사 기록 입력 또는 모의 집계,설명값
+verification_summary,voc_id,문자열,필수,검사 기록 입력 또는 모의 집계,voc.voc_id 참조
+verification_summary,condition,문자열,필수,검사 기록 입력 또는 모의 집계,설명값
+verification_summary,test_count,정수,필수,검사 기록 입력 또는 모의 집계,0 이상
+verification_summary,ok_count,정수,필수,검사 기록 입력 또는 모의 집계,0 이상
+verification_summary,ng_count,정수,필수,검사 기록 입력 또는 모의 집계,0 이상
+verification_summary,example_flag,문자열,필수,검사 기록 입력 또는 모의 집계,설명값

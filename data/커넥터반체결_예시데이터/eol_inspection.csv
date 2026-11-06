@@ -1,0 +1,6 @@
+﻿event_id,voc_id,vin,detected_at,equipment_id,connector_state,confirmation_method_before,line_noise_condition,eol_result_before,dtc,containment_repair,eol_result_after,shipped_before_containment,example_flag
+1,VOC-2026-0101,TESTCONN000000001,2026-10-01 09:30,DEMO-EOL-C01,반체결,체결음 청취,체결음 식별 어려움(가상 관찰),NG,U0100,완전 체결 및 잠금 확인,OK,아니오,가상
+2,VOC-2026-0102,TESTCONN000000002,2026-10-02 09:30,DEMO-EOL-C01,반체결,체결음 청취,체결음 식별 어려움(가상 관찰),NG,U0100,완전 체결 및 잠금 확인,OK,아니오,가상
+3,VOC-2026-0103,TESTCONN000000003,2026-10-03 09:30,DEMO-EOL-C01,반체결,체결음 청취,체결음 식별 어려움(가상 관찰),NG,U0100,완전 체결 및 잠금 확인,OK,아니오,가상
+4,VOC-2026-0104,TESTCONN000000004,2026-10-04 09:30,DEMO-EOL-C01,반체결,체결음 청취,체결음 식별 어려움(가상 관찰),NG,U0100,완전 체결 및 잠금 확인,OK,아니오,가상
+5,VOC-2026-0105,TESTCONN000000005,2026-10-05 09:30,DEMO-EOL-C01,반체결,체결음 청취,체결음 식별 어려움(가상 관찰),NG,U0100,완전 체결 및 잠금 확인,OK,아니오,가상

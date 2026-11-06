@@ -1,0 +1,704 @@
+﻿table,record_id,column,result,check
+voc,VOC-2026-0201,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,received_at,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,received_at,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,channel,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,channel,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,grade,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,grade,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,owner,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,owner,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,vin,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,vin,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,mileage_km,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,mileage_km,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,voc_type,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,voc_type,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,system,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,system,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,part_name,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,part_name,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,part_no,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,part_no,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,symptom,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,symptom,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,frequency,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,frequency,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,reproduced,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,reproduced,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,type_detail,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,type_detail,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,media_links,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,media_links,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,similar_ids,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,similar_ids,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,stage,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,stage,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,due_at,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,due_at,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,created_at,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,created_at,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,closed_at,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,closed_at,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0201,alerted_on,통과,값 존재 및 타입/길이/코드 확인
+voc,VOC-2026-0202,alerted_on,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,team,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,team,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d3_scope,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d3_scope,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d3_action,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d3_action,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d3_done_at,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d3_done_at,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d4_occur_cause,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d4_occur_cause,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d4_escape_cause,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d4_escape_cause,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d4_method,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d4_method,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d4_verified,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d4_verified,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d4_done_at,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d4_done_at,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d5_occur_action,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d5_occur_action,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d5_escape_action,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d5_escape_action,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d6_cutover,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d6_cutover,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d6_criteria,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d6_criteria,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d6_result,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d6_result,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d6_evidence,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d6_evidence,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d7_docs,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d7_docs,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d7_horizontal,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d7_horizontal,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0201,d8_customer,통과,값 존재 및 타입/길이/코드 확인
+voc_8d,VOC-2026-0202,d8_customer,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,log_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,voc_id,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,from_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,to_stage,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_by,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,changed_at,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,note,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,note,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,note,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,note,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0201,note,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,note,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,note,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,note,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,note,통과,값 존재 및 타입/길이/코드 확인
+voc_stage_log,VOC-2026-0202,note,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000101,vin,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000102,vin,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000101,model,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000102,model,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000101,model_year,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000102,model_year,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000101,prod_date,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000102,prod_date,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000101,plant,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000102,plant,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000101,line,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000102,line,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000101,shift,통과,값 존재 및 타입/길이/코드 확인
+vehicle,TESTLEAK000000102,shift,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000101,vin,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000102,vin,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000101,part_no,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000102,part_no,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000101,part_name,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000102,part_name,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000101,part_lot,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000102,part_lot,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000101,supplier,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000102,supplier,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000101,received_date,통과,값 존재 및 타입/길이/코드 확인
+vehicle_part,TESTLEAK000000102,received_date,통과,값 존재 및 타입/길이/코드 확인
+code,NVH,group,통과,값 존재 및 타입/길이/코드 확인
+code,FUNC,group,통과,값 존재 및 타입/길이/코드 확인
+code,ELEC,group,통과,값 존재 및 타입/길이/코드 확인
+code,LEAK,group,통과,값 존재 및 타입/길이/코드 확인
+code,APPR,group,통과,값 존재 및 타입/길이/코드 확인
+code,ODOR,group,통과,값 존재 및 타입/길이/코드 확인
+code,TRIM,group,통과,값 존재 및 타입/길이/코드 확인
+code,ETC,group,통과,값 존재 및 타입/길이/코드 확인
+code,고객센터,group,통과,값 존재 및 타입/길이/코드 확인
+code,딜러,group,통과,값 존재 및 타입/길이/코드 확인
+code,정비소,group,통과,값 존재 및 타입/길이/코드 확인
+code,온라인,group,통과,값 존재 및 타입/길이/코드 확인
+code,사내,group,통과,값 존재 및 타입/길이/코드 확인
+code,안전·법규,group,통과,값 존재 및 타입/길이/코드 확인
+code,기능,group,통과,값 존재 및 타입/길이/코드 확인
+code,감성,group,통과,값 존재 및 타입/길이/코드 확인
+code,차체,group,통과,값 존재 및 타입/길이/코드 확인
+code,외장,group,통과,값 존재 및 타입/길이/코드 확인
+code,내장,group,통과,값 존재 및 타입/길이/코드 확인
+code,샤시,group,통과,값 존재 및 타입/길이/코드 확인
+code,파워트레인,group,통과,값 존재 및 타입/길이/코드 확인
+code,전장,group,통과,값 존재 및 타입/길이/코드 확인
+code,공조,group,통과,값 존재 및 타입/길이/코드 확인
+code,기타,group,통과,값 존재 및 타입/길이/코드 확인
+code,항상,group,통과,값 존재 및 타입/길이/코드 확인
+code,간헐,group,통과,값 존재 및 타입/길이/코드 확인
+code,1회,group,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,group,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,group,통과,값 존재 및 타입/길이/코드 확인
+code,확인 전,group,통과,값 존재 및 타입/길이/코드 확인
+code,D3,group,통과,값 존재 및 타입/길이/코드 확인
+code,D4,group,통과,값 존재 및 타입/길이/코드 확인
+code,D5-D6,group,통과,값 존재 및 타입/길이/코드 확인
+code,D6검증,group,통과,값 존재 및 타입/길이/코드 확인
+code,D7-D8,group,통과,값 존재 및 타입/길이/코드 확인
+code,종결,group,통과,값 존재 및 타입/길이/코드 확인
+code,주간,group,통과,값 존재 및 타입/길이/코드 확인
+code,야간,group,통과,값 존재 및 타입/길이/코드 확인
+code,5Why,group,통과,값 존재 및 타입/길이/코드 확인
+code,특성요인도,group,통과,값 존재 및 타입/길이/코드 확인
+code,재현 시험,group,통과,값 존재 및 타입/길이/코드 확인
+code,기타,group,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,group,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,group,통과,값 존재 및 타입/길이/코드 확인
+code,합격,group,통과,값 존재 및 타입/길이/코드 확인
+code,불합격,group,통과,값 존재 및 타입/길이/코드 확인
+code,해결 확인,group,통과,값 존재 및 타입/길이/코드 확인
+code,미해결,group,통과,값 존재 및 타입/길이/코드 확인
+code,연락 안 됨,group,통과,값 존재 및 타입/길이/코드 확인
+code,덜그럭,group,통과,값 존재 및 타입/길이/코드 확인
+code,찌익,group,통과,값 존재 및 타입/길이/코드 확인
+code,딱딱,group,통과,값 존재 및 타입/길이/코드 확인
+code,웅웅,group,통과,값 존재 및 타입/길이/코드 확인
+code,떨림,group,통과,값 존재 및 타입/길이/코드 확인
+code,기타,group,통과,값 존재 및 타입/길이/코드 확인
+code,요철·방지턱,group,통과,값 존재 및 타입/길이/코드 확인
+code,비포장,group,통과,값 존재 및 타입/길이/코드 확인
+code,평탄한 길도,group,통과,값 존재 및 타입/길이/코드 확인
+code,모름,group,통과,값 존재 및 타입/길이/코드 확인
+code,정차,group,통과,값 존재 및 타입/길이/코드 확인
+code,저속,group,통과,값 존재 및 타입/길이/코드 확인
+code,중속,group,통과,값 존재 및 타입/길이/코드 확인
+code,고속,group,통과,값 존재 및 타입/길이/코드 확인
+code,모름,group,통과,값 존재 및 타입/길이/코드 확인
+code,멈춤,group,통과,값 존재 및 타입/길이/코드 확인
+code,안 멈춤,group,통과,값 존재 및 타입/길이/코드 확인
+code,안 해봄,group,통과,값 존재 및 타입/길이/코드 확인
+code,작동 안 함,group,통과,값 존재 및 타입/길이/코드 확인
+code,간헐 작동,group,통과,값 존재 및 타입/길이/코드 확인
+code,오작동,group,통과,값 존재 및 타입/길이/코드 확인
+code,있음,group,통과,값 존재 및 타입/길이/코드 확인
+code,없음,group,통과,값 존재 및 타입/길이/코드 확인
+code,물,group,통과,값 존재 및 타입/길이/코드 확인
+code,오일,group,통과,값 존재 및 타입/길이/코드 확인
+code,냉각수,group,통과,값 존재 및 타입/길이/코드 확인
+code,기타,group,통과,값 존재 및 타입/길이/코드 확인
+code,우천,group,통과,값 존재 및 타입/길이/코드 확인
+code,세차,group,통과,값 존재 및 타입/길이/코드 확인
+code,주행 후,group,통과,값 존재 및 타입/길이/코드 확인
+code,상시,group,통과,값 존재 및 타입/길이/코드 확인
+code,긁힘,group,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,group,통과,값 존재 및 타입/길이/코드 확인
+code,색 차이,group,통과,값 존재 및 타입/길이/코드 확인
+code,부식,group,통과,값 존재 및 타입/길이/코드 확인
+code,기타,group,통과,값 존재 및 타입/길이/코드 확인
+code,예,group,통과,값 존재 및 타입/길이/코드 확인
+code,아니오,group,통과,값 존재 및 타입/길이/코드 확인
+code,모름,group,통과,값 존재 및 타입/길이/코드 확인
+code,곰팡이,group,통과,값 존재 및 타입/길이/코드 확인
+code,탄 냄새,group,통과,값 존재 및 타입/길이/코드 확인
+code,연료,group,통과,값 존재 및 타입/길이/코드 확인
+code,기타,group,통과,값 존재 및 타입/길이/코드 확인
+code,냉방,group,통과,값 존재 및 타입/길이/코드 확인
+code,난방,group,통과,값 존재 및 타입/길이/코드 확인
+code,송풍,group,통과,값 존재 및 타입/길이/코드 확인
+code,꺼짐,group,통과,값 존재 및 타입/길이/코드 확인
+code,단차,group,통과,값 존재 및 타입/길이/코드 확인
+code,유격,group,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,group,통과,값 존재 및 타입/길이/코드 확인
+code,기타,group,통과,값 존재 및 타입/길이/코드 확인
+code,없음,group,통과,값 존재 및 타입/길이/코드 확인
+code,내장재 탈착,group,통과,값 존재 및 타입/길이/코드 확인
+code,용품 장착,group,통과,값 존재 및 타입/길이/코드 확인
+code,사고 수리,group,통과,값 존재 및 타입/길이/코드 확인
+code,기타,group,통과,값 존재 및 타입/길이/코드 확인
+code,NVH,code,통과,값 존재 및 타입/길이/코드 확인
+code,FUNC,code,통과,값 존재 및 타입/길이/코드 확인
+code,ELEC,code,통과,값 존재 및 타입/길이/코드 확인
+code,LEAK,code,통과,값 존재 및 타입/길이/코드 확인
+code,APPR,code,통과,값 존재 및 타입/길이/코드 확인
+code,ODOR,code,통과,값 존재 및 타입/길이/코드 확인
+code,TRIM,code,통과,값 존재 및 타입/길이/코드 확인
+code,ETC,code,통과,값 존재 및 타입/길이/코드 확인
+code,고객센터,code,통과,값 존재 및 타입/길이/코드 확인
+code,딜러,code,통과,값 존재 및 타입/길이/코드 확인
+code,정비소,code,통과,값 존재 및 타입/길이/코드 확인
+code,온라인,code,통과,값 존재 및 타입/길이/코드 확인
+code,사내,code,통과,값 존재 및 타입/길이/코드 확인
+code,안전·법규,code,통과,값 존재 및 타입/길이/코드 확인
+code,기능,code,통과,값 존재 및 타입/길이/코드 확인
+code,감성,code,통과,값 존재 및 타입/길이/코드 확인
+code,차체,code,통과,값 존재 및 타입/길이/코드 확인
+code,외장,code,통과,값 존재 및 타입/길이/코드 확인
+code,내장,code,통과,값 존재 및 타입/길이/코드 확인
+code,샤시,code,통과,값 존재 및 타입/길이/코드 확인
+code,파워트레인,code,통과,값 존재 및 타입/길이/코드 확인
+code,전장,code,통과,값 존재 및 타입/길이/코드 확인
+code,공조,code,통과,값 존재 및 타입/길이/코드 확인
+code,기타,code,통과,값 존재 및 타입/길이/코드 확인
+code,항상,code,통과,값 존재 및 타입/길이/코드 확인
+code,간헐,code,통과,값 존재 및 타입/길이/코드 확인
+code,1회,code,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,code,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,code,통과,값 존재 및 타입/길이/코드 확인
+code,확인 전,code,통과,값 존재 및 타입/길이/코드 확인
+code,D3,code,통과,값 존재 및 타입/길이/코드 확인
+code,D4,code,통과,값 존재 및 타입/길이/코드 확인
+code,D5-D6,code,통과,값 존재 및 타입/길이/코드 확인
+code,D6검증,code,통과,값 존재 및 타입/길이/코드 확인
+code,D7-D8,code,통과,값 존재 및 타입/길이/코드 확인
+code,종결,code,통과,값 존재 및 타입/길이/코드 확인
+code,주간,code,통과,값 존재 및 타입/길이/코드 확인
+code,야간,code,통과,값 존재 및 타입/길이/코드 확인
+code,5Why,code,통과,값 존재 및 타입/길이/코드 확인
+code,특성요인도,code,통과,값 존재 및 타입/길이/코드 확인
+code,재현 시험,code,통과,값 존재 및 타입/길이/코드 확인
+code,기타,code,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,code,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,code,통과,값 존재 및 타입/길이/코드 확인
+code,합격,code,통과,값 존재 및 타입/길이/코드 확인
+code,불합격,code,통과,값 존재 및 타입/길이/코드 확인
+code,해결 확인,code,통과,값 존재 및 타입/길이/코드 확인
+code,미해결,code,통과,값 존재 및 타입/길이/코드 확인
+code,연락 안 됨,code,통과,값 존재 및 타입/길이/코드 확인
+code,덜그럭,code,통과,값 존재 및 타입/길이/코드 확인
+code,찌익,code,통과,값 존재 및 타입/길이/코드 확인
+code,딱딱,code,통과,값 존재 및 타입/길이/코드 확인
+code,웅웅,code,통과,값 존재 및 타입/길이/코드 확인
+code,떨림,code,통과,값 존재 및 타입/길이/코드 확인
+code,기타,code,통과,값 존재 및 타입/길이/코드 확인
+code,요철·방지턱,code,통과,값 존재 및 타입/길이/코드 확인
+code,비포장,code,통과,값 존재 및 타입/길이/코드 확인
+code,평탄한 길도,code,통과,값 존재 및 타입/길이/코드 확인
+code,모름,code,통과,값 존재 및 타입/길이/코드 확인
+code,정차,code,통과,값 존재 및 타입/길이/코드 확인
+code,저속,code,통과,값 존재 및 타입/길이/코드 확인
+code,중속,code,통과,값 존재 및 타입/길이/코드 확인
+code,고속,code,통과,값 존재 및 타입/길이/코드 확인
+code,모름,code,통과,값 존재 및 타입/길이/코드 확인
+code,멈춤,code,통과,값 존재 및 타입/길이/코드 확인
+code,안 멈춤,code,통과,값 존재 및 타입/길이/코드 확인
+code,안 해봄,code,통과,값 존재 및 타입/길이/코드 확인
+code,작동 안 함,code,통과,값 존재 및 타입/길이/코드 확인
+code,간헐 작동,code,통과,값 존재 및 타입/길이/코드 확인
+code,오작동,code,통과,값 존재 및 타입/길이/코드 확인
+code,있음,code,통과,값 존재 및 타입/길이/코드 확인
+code,없음,code,통과,값 존재 및 타입/길이/코드 확인
+code,물,code,통과,값 존재 및 타입/길이/코드 확인
+code,오일,code,통과,값 존재 및 타입/길이/코드 확인
+code,냉각수,code,통과,값 존재 및 타입/길이/코드 확인
+code,기타,code,통과,값 존재 및 타입/길이/코드 확인
+code,우천,code,통과,값 존재 및 타입/길이/코드 확인
+code,세차,code,통과,값 존재 및 타입/길이/코드 확인
+code,주행 후,code,통과,값 존재 및 타입/길이/코드 확인
+code,상시,code,통과,값 존재 및 타입/길이/코드 확인
+code,긁힘,code,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,code,통과,값 존재 및 타입/길이/코드 확인
+code,색 차이,code,통과,값 존재 및 타입/길이/코드 확인
+code,부식,code,통과,값 존재 및 타입/길이/코드 확인
+code,기타,code,통과,값 존재 및 타입/길이/코드 확인
+code,예,code,통과,값 존재 및 타입/길이/코드 확인
+code,아니오,code,통과,값 존재 및 타입/길이/코드 확인
+code,모름,code,통과,값 존재 및 타입/길이/코드 확인
+code,곰팡이,code,통과,값 존재 및 타입/길이/코드 확인
+code,탄 냄새,code,통과,값 존재 및 타입/길이/코드 확인
+code,연료,code,통과,값 존재 및 타입/길이/코드 확인
+code,기타,code,통과,값 존재 및 타입/길이/코드 확인
+code,냉방,code,통과,값 존재 및 타입/길이/코드 확인
+code,난방,code,통과,값 존재 및 타입/길이/코드 확인
+code,송풍,code,통과,값 존재 및 타입/길이/코드 확인
+code,꺼짐,code,통과,값 존재 및 타입/길이/코드 확인
+code,단차,code,통과,값 존재 및 타입/길이/코드 확인
+code,유격,code,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,code,통과,값 존재 및 타입/길이/코드 확인
+code,기타,code,통과,값 존재 및 타입/길이/코드 확인
+code,없음,code,통과,값 존재 및 타입/길이/코드 확인
+code,내장재 탈착,code,통과,값 존재 및 타입/길이/코드 확인
+code,용품 장착,code,통과,값 존재 및 타입/길이/코드 확인
+code,사고 수리,code,통과,값 존재 및 타입/길이/코드 확인
+code,기타,code,통과,값 존재 및 타입/길이/코드 확인
+code,NVH,label,통과,값 존재 및 타입/길이/코드 확인
+code,FUNC,label,통과,값 존재 및 타입/길이/코드 확인
+code,ELEC,label,통과,값 존재 및 타입/길이/코드 확인
+code,LEAK,label,통과,값 존재 및 타입/길이/코드 확인
+code,APPR,label,통과,값 존재 및 타입/길이/코드 확인
+code,ODOR,label,통과,값 존재 및 타입/길이/코드 확인
+code,TRIM,label,통과,값 존재 및 타입/길이/코드 확인
+code,ETC,label,통과,값 존재 및 타입/길이/코드 확인
+code,고객센터,label,통과,값 존재 및 타입/길이/코드 확인
+code,딜러,label,통과,값 존재 및 타입/길이/코드 확인
+code,정비소,label,통과,값 존재 및 타입/길이/코드 확인
+code,온라인,label,통과,값 존재 및 타입/길이/코드 확인
+code,사내,label,통과,값 존재 및 타입/길이/코드 확인
+code,안전·법규,label,통과,값 존재 및 타입/길이/코드 확인
+code,기능,label,통과,값 존재 및 타입/길이/코드 확인
+code,감성,label,통과,값 존재 및 타입/길이/코드 확인
+code,차체,label,통과,값 존재 및 타입/길이/코드 확인
+code,외장,label,통과,값 존재 및 타입/길이/코드 확인
+code,내장,label,통과,값 존재 및 타입/길이/코드 확인
+code,샤시,label,통과,값 존재 및 타입/길이/코드 확인
+code,파워트레인,label,통과,값 존재 및 타입/길이/코드 확인
+code,전장,label,통과,값 존재 및 타입/길이/코드 확인
+code,공조,label,통과,값 존재 및 타입/길이/코드 확인
+code,기타,label,통과,값 존재 및 타입/길이/코드 확인
+code,항상,label,통과,값 존재 및 타입/길이/코드 확인
+code,간헐,label,통과,값 존재 및 타입/길이/코드 확인
+code,1회,label,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,label,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,label,통과,값 존재 및 타입/길이/코드 확인
+code,확인 전,label,통과,값 존재 및 타입/길이/코드 확인
+code,D3,label,통과,값 존재 및 타입/길이/코드 확인
+code,D4,label,통과,값 존재 및 타입/길이/코드 확인
+code,D5-D6,label,통과,값 존재 및 타입/길이/코드 확인
+code,D6검증,label,통과,값 존재 및 타입/길이/코드 확인
+code,D7-D8,label,통과,값 존재 및 타입/길이/코드 확인
+code,종결,label,통과,값 존재 및 타입/길이/코드 확인
+code,주간,label,통과,값 존재 및 타입/길이/코드 확인
+code,야간,label,통과,값 존재 및 타입/길이/코드 확인
+code,5Why,label,통과,값 존재 및 타입/길이/코드 확인
+code,특성요인도,label,통과,값 존재 및 타입/길이/코드 확인
+code,재현 시험,label,통과,값 존재 및 타입/길이/코드 확인
+code,기타,label,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,label,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,label,통과,값 존재 및 타입/길이/코드 확인
+code,합격,label,통과,값 존재 및 타입/길이/코드 확인
+code,불합격,label,통과,값 존재 및 타입/길이/코드 확인
+code,해결 확인,label,통과,값 존재 및 타입/길이/코드 확인
+code,미해결,label,통과,값 존재 및 타입/길이/코드 확인
+code,연락 안 됨,label,통과,값 존재 및 타입/길이/코드 확인
+code,덜그럭,label,통과,값 존재 및 타입/길이/코드 확인
+code,찌익,label,통과,값 존재 및 타입/길이/코드 확인
+code,딱딱,label,통과,값 존재 및 타입/길이/코드 확인
+code,웅웅,label,통과,값 존재 및 타입/길이/코드 확인
+code,떨림,label,통과,값 존재 및 타입/길이/코드 확인
+code,기타,label,통과,값 존재 및 타입/길이/코드 확인
+code,요철·방지턱,label,통과,값 존재 및 타입/길이/코드 확인
+code,비포장,label,통과,값 존재 및 타입/길이/코드 확인
+code,평탄한 길도,label,통과,값 존재 및 타입/길이/코드 확인
+code,모름,label,통과,값 존재 및 타입/길이/코드 확인
+code,정차,label,통과,값 존재 및 타입/길이/코드 확인
+code,저속,label,통과,값 존재 및 타입/길이/코드 확인
+code,중속,label,통과,값 존재 및 타입/길이/코드 확인
+code,고속,label,통과,값 존재 및 타입/길이/코드 확인
+code,모름,label,통과,값 존재 및 타입/길이/코드 확인
+code,멈춤,label,통과,값 존재 및 타입/길이/코드 확인
+code,안 멈춤,label,통과,값 존재 및 타입/길이/코드 확인
+code,안 해봄,label,통과,값 존재 및 타입/길이/코드 확인
+code,작동 안 함,label,통과,값 존재 및 타입/길이/코드 확인
+code,간헐 작동,label,통과,값 존재 및 타입/길이/코드 확인
+code,오작동,label,통과,값 존재 및 타입/길이/코드 확인
+code,있음,label,통과,값 존재 및 타입/길이/코드 확인
+code,없음,label,통과,값 존재 및 타입/길이/코드 확인
+code,물,label,통과,값 존재 및 타입/길이/코드 확인
+code,오일,label,통과,값 존재 및 타입/길이/코드 확인
+code,냉각수,label,통과,값 존재 및 타입/길이/코드 확인
+code,기타,label,통과,값 존재 및 타입/길이/코드 확인
+code,우천,label,통과,값 존재 및 타입/길이/코드 확인
+code,세차,label,통과,값 존재 및 타입/길이/코드 확인
+code,주행 후,label,통과,값 존재 및 타입/길이/코드 확인
+code,상시,label,통과,값 존재 및 타입/길이/코드 확인
+code,긁힘,label,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,label,통과,값 존재 및 타입/길이/코드 확인
+code,색 차이,label,통과,값 존재 및 타입/길이/코드 확인
+code,부식,label,통과,값 존재 및 타입/길이/코드 확인
+code,기타,label,통과,값 존재 및 타입/길이/코드 확인
+code,예,label,통과,값 존재 및 타입/길이/코드 확인
+code,아니오,label,통과,값 존재 및 타입/길이/코드 확인
+code,모름,label,통과,값 존재 및 타입/길이/코드 확인
+code,곰팡이,label,통과,값 존재 및 타입/길이/코드 확인
+code,탄 냄새,label,통과,값 존재 및 타입/길이/코드 확인
+code,연료,label,통과,값 존재 및 타입/길이/코드 확인
+code,기타,label,통과,값 존재 및 타입/길이/코드 확인
+code,냉방,label,통과,값 존재 및 타입/길이/코드 확인
+code,난방,label,통과,값 존재 및 타입/길이/코드 확인
+code,송풍,label,통과,값 존재 및 타입/길이/코드 확인
+code,꺼짐,label,통과,값 존재 및 타입/길이/코드 확인
+code,단차,label,통과,값 존재 및 타입/길이/코드 확인
+code,유격,label,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,label,통과,값 존재 및 타입/길이/코드 확인
+code,기타,label,통과,값 존재 및 타입/길이/코드 확인
+code,없음,label,통과,값 존재 및 타입/길이/코드 확인
+code,내장재 탈착,label,통과,값 존재 및 타입/길이/코드 확인
+code,용품 장착,label,통과,값 존재 및 타입/길이/코드 확인
+code,사고 수리,label,통과,값 존재 및 타입/길이/코드 확인
+code,기타,label,통과,값 존재 및 타입/길이/코드 확인
+code,NVH,sort,통과,값 존재 및 타입/길이/코드 확인
+code,FUNC,sort,통과,값 존재 및 타입/길이/코드 확인
+code,ELEC,sort,통과,값 존재 및 타입/길이/코드 확인
+code,LEAK,sort,통과,값 존재 및 타입/길이/코드 확인
+code,APPR,sort,통과,값 존재 및 타입/길이/코드 확인
+code,ODOR,sort,통과,값 존재 및 타입/길이/코드 확인
+code,TRIM,sort,통과,값 존재 및 타입/길이/코드 확인
+code,ETC,sort,통과,값 존재 및 타입/길이/코드 확인
+code,고객센터,sort,통과,값 존재 및 타입/길이/코드 확인
+code,딜러,sort,통과,값 존재 및 타입/길이/코드 확인
+code,정비소,sort,통과,값 존재 및 타입/길이/코드 확인
+code,온라인,sort,통과,값 존재 및 타입/길이/코드 확인
+code,사내,sort,통과,값 존재 및 타입/길이/코드 확인
+code,안전·법규,sort,통과,값 존재 및 타입/길이/코드 확인
+code,기능,sort,통과,값 존재 및 타입/길이/코드 확인
+code,감성,sort,통과,값 존재 및 타입/길이/코드 확인
+code,차체,sort,통과,값 존재 및 타입/길이/코드 확인
+code,외장,sort,통과,값 존재 및 타입/길이/코드 확인
+code,내장,sort,통과,값 존재 및 타입/길이/코드 확인
+code,샤시,sort,통과,값 존재 및 타입/길이/코드 확인
+code,파워트레인,sort,통과,값 존재 및 타입/길이/코드 확인
+code,전장,sort,통과,값 존재 및 타입/길이/코드 확인
+code,공조,sort,통과,값 존재 및 타입/길이/코드 확인
+code,기타,sort,통과,값 존재 및 타입/길이/코드 확인
+code,항상,sort,통과,값 존재 및 타입/길이/코드 확인
+code,간헐,sort,통과,값 존재 및 타입/길이/코드 확인
+code,1회,sort,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,sort,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,sort,통과,값 존재 및 타입/길이/코드 확인
+code,확인 전,sort,통과,값 존재 및 타입/길이/코드 확인
+code,D3,sort,통과,값 존재 및 타입/길이/코드 확인
+code,D4,sort,통과,값 존재 및 타입/길이/코드 확인
+code,D5-D6,sort,통과,값 존재 및 타입/길이/코드 확인
+code,D6검증,sort,통과,값 존재 및 타입/길이/코드 확인
+code,D7-D8,sort,통과,값 존재 및 타입/길이/코드 확인
+code,종결,sort,통과,값 존재 및 타입/길이/코드 확인
+code,주간,sort,통과,값 존재 및 타입/길이/코드 확인
+code,야간,sort,통과,값 존재 및 타입/길이/코드 확인
+code,5Why,sort,통과,값 존재 및 타입/길이/코드 확인
+code,특성요인도,sort,통과,값 존재 및 타입/길이/코드 확인
+code,재현 시험,sort,통과,값 존재 및 타입/길이/코드 확인
+code,기타,sort,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,sort,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,sort,통과,값 존재 및 타입/길이/코드 확인
+code,합격,sort,통과,값 존재 및 타입/길이/코드 확인
+code,불합격,sort,통과,값 존재 및 타입/길이/코드 확인
+code,해결 확인,sort,통과,값 존재 및 타입/길이/코드 확인
+code,미해결,sort,통과,값 존재 및 타입/길이/코드 확인
+code,연락 안 됨,sort,통과,값 존재 및 타입/길이/코드 확인
+code,덜그럭,sort,통과,값 존재 및 타입/길이/코드 확인
+code,찌익,sort,통과,값 존재 및 타입/길이/코드 확인
+code,딱딱,sort,통과,값 존재 및 타입/길이/코드 확인
+code,웅웅,sort,통과,값 존재 및 타입/길이/코드 확인
+code,떨림,sort,통과,값 존재 및 타입/길이/코드 확인
+code,기타,sort,통과,값 존재 및 타입/길이/코드 확인
+code,요철·방지턱,sort,통과,값 존재 및 타입/길이/코드 확인
+code,비포장,sort,통과,값 존재 및 타입/길이/코드 확인
+code,평탄한 길도,sort,통과,값 존재 및 타입/길이/코드 확인
+code,모름,sort,통과,값 존재 및 타입/길이/코드 확인
+code,정차,sort,통과,값 존재 및 타입/길이/코드 확인
+code,저속,sort,통과,값 존재 및 타입/길이/코드 확인
+code,중속,sort,통과,값 존재 및 타입/길이/코드 확인
+code,고속,sort,통과,값 존재 및 타입/길이/코드 확인
+code,모름,sort,통과,값 존재 및 타입/길이/코드 확인
+code,멈춤,sort,통과,값 존재 및 타입/길이/코드 확인
+code,안 멈춤,sort,통과,값 존재 및 타입/길이/코드 확인
+code,안 해봄,sort,통과,값 존재 및 타입/길이/코드 확인
+code,작동 안 함,sort,통과,값 존재 및 타입/길이/코드 확인
+code,간헐 작동,sort,통과,값 존재 및 타입/길이/코드 확인
+code,오작동,sort,통과,값 존재 및 타입/길이/코드 확인
+code,있음,sort,통과,값 존재 및 타입/길이/코드 확인
+code,없음,sort,통과,값 존재 및 타입/길이/코드 확인
+code,물,sort,통과,값 존재 및 타입/길이/코드 확인
+code,오일,sort,통과,값 존재 및 타입/길이/코드 확인
+code,냉각수,sort,통과,값 존재 및 타입/길이/코드 확인
+code,기타,sort,통과,값 존재 및 타입/길이/코드 확인
+code,우천,sort,통과,값 존재 및 타입/길이/코드 확인
+code,세차,sort,통과,값 존재 및 타입/길이/코드 확인
+code,주행 후,sort,통과,값 존재 및 타입/길이/코드 확인
+code,상시,sort,통과,값 존재 및 타입/길이/코드 확인
+code,긁힘,sort,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,sort,통과,값 존재 및 타입/길이/코드 확인
+code,색 차이,sort,통과,값 존재 및 타입/길이/코드 확인
+code,부식,sort,통과,값 존재 및 타입/길이/코드 확인
+code,기타,sort,통과,값 존재 및 타입/길이/코드 확인
+code,예,sort,통과,값 존재 및 타입/길이/코드 확인
+code,아니오,sort,통과,값 존재 및 타입/길이/코드 확인
+code,모름,sort,통과,값 존재 및 타입/길이/코드 확인
+code,곰팡이,sort,통과,값 존재 및 타입/길이/코드 확인
+code,탄 냄새,sort,통과,값 존재 및 타입/길이/코드 확인
+code,연료,sort,통과,값 존재 및 타입/길이/코드 확인
+code,기타,sort,통과,값 존재 및 타입/길이/코드 확인
+code,냉방,sort,통과,값 존재 및 타입/길이/코드 확인
+code,난방,sort,통과,값 존재 및 타입/길이/코드 확인
+code,송풍,sort,통과,값 존재 및 타입/길이/코드 확인
+code,꺼짐,sort,통과,값 존재 및 타입/길이/코드 확인
+code,단차,sort,통과,값 존재 및 타입/길이/코드 확인
+code,유격,sort,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,sort,통과,값 존재 및 타입/길이/코드 확인
+code,기타,sort,통과,값 존재 및 타입/길이/코드 확인
+code,없음,sort,통과,값 존재 및 타입/길이/코드 확인
+code,내장재 탈착,sort,통과,값 존재 및 타입/길이/코드 확인
+code,용품 장착,sort,통과,값 존재 및 타입/길이/코드 확인
+code,사고 수리,sort,통과,값 존재 및 타입/길이/코드 확인
+code,기타,sort,통과,값 존재 및 타입/길이/코드 확인
+code,NVH,active,통과,값 존재 및 타입/길이/코드 확인
+code,FUNC,active,통과,값 존재 및 타입/길이/코드 확인
+code,ELEC,active,통과,값 존재 및 타입/길이/코드 확인
+code,LEAK,active,통과,값 존재 및 타입/길이/코드 확인
+code,APPR,active,통과,값 존재 및 타입/길이/코드 확인
+code,ODOR,active,통과,값 존재 및 타입/길이/코드 확인
+code,TRIM,active,통과,값 존재 및 타입/길이/코드 확인
+code,ETC,active,통과,값 존재 및 타입/길이/코드 확인
+code,고객센터,active,통과,값 존재 및 타입/길이/코드 확인
+code,딜러,active,통과,값 존재 및 타입/길이/코드 확인
+code,정비소,active,통과,값 존재 및 타입/길이/코드 확인
+code,온라인,active,통과,값 존재 및 타입/길이/코드 확인
+code,사내,active,통과,값 존재 및 타입/길이/코드 확인
+code,안전·법규,active,통과,값 존재 및 타입/길이/코드 확인
+code,기능,active,통과,값 존재 및 타입/길이/코드 확인
+code,감성,active,통과,값 존재 및 타입/길이/코드 확인
+code,차체,active,통과,값 존재 및 타입/길이/코드 확인
+code,외장,active,통과,값 존재 및 타입/길이/코드 확인
+code,내장,active,통과,값 존재 및 타입/길이/코드 확인
+code,샤시,active,통과,값 존재 및 타입/길이/코드 확인
+code,파워트레인,active,통과,값 존재 및 타입/길이/코드 확인
+code,전장,active,통과,값 존재 및 타입/길이/코드 확인
+code,공조,active,통과,값 존재 및 타입/길이/코드 확인
+code,기타,active,통과,값 존재 및 타입/길이/코드 확인
+code,항상,active,통과,값 존재 및 타입/길이/코드 확인
+code,간헐,active,통과,값 존재 및 타입/길이/코드 확인
+code,1회,active,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,active,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,active,통과,값 존재 및 타입/길이/코드 확인
+code,확인 전,active,통과,값 존재 및 타입/길이/코드 확인
+code,D3,active,통과,값 존재 및 타입/길이/코드 확인
+code,D4,active,통과,값 존재 및 타입/길이/코드 확인
+code,D5-D6,active,통과,값 존재 및 타입/길이/코드 확인
+code,D6검증,active,통과,값 존재 및 타입/길이/코드 확인
+code,D7-D8,active,통과,값 존재 및 타입/길이/코드 확인
+code,종결,active,통과,값 존재 및 타입/길이/코드 확인
+code,주간,active,통과,값 존재 및 타입/길이/코드 확인
+code,야간,active,통과,값 존재 및 타입/길이/코드 확인
+code,5Why,active,통과,값 존재 및 타입/길이/코드 확인
+code,특성요인도,active,통과,값 존재 및 타입/길이/코드 확인
+code,재현 시험,active,통과,값 존재 및 타입/길이/코드 확인
+code,기타,active,통과,값 존재 및 타입/길이/코드 확인
+code,재현됨,active,통과,값 존재 및 타입/길이/코드 확인
+code,재현 안 됨,active,통과,값 존재 및 타입/길이/코드 확인
+code,합격,active,통과,값 존재 및 타입/길이/코드 확인
+code,불합격,active,통과,값 존재 및 타입/길이/코드 확인
+code,해결 확인,active,통과,값 존재 및 타입/길이/코드 확인
+code,미해결,active,통과,값 존재 및 타입/길이/코드 확인
+code,연락 안 됨,active,통과,값 존재 및 타입/길이/코드 확인
+code,덜그럭,active,통과,값 존재 및 타입/길이/코드 확인
+code,찌익,active,통과,값 존재 및 타입/길이/코드 확인
+code,딱딱,active,통과,값 존재 및 타입/길이/코드 확인
+code,웅웅,active,통과,값 존재 및 타입/길이/코드 확인
+code,떨림,active,통과,값 존재 및 타입/길이/코드 확인
+code,기타,active,통과,값 존재 및 타입/길이/코드 확인
+code,요철·방지턱,active,통과,값 존재 및 타입/길이/코드 확인
+code,비포장,active,통과,값 존재 및 타입/길이/코드 확인
+code,평탄한 길도,active,통과,값 존재 및 타입/길이/코드 확인
+code,모름,active,통과,값 존재 및 타입/길이/코드 확인
+code,정차,active,통과,값 존재 및 타입/길이/코드 확인
+code,저속,active,통과,값 존재 및 타입/길이/코드 확인
+code,중속,active,통과,값 존재 및 타입/길이/코드 확인
+code,고속,active,통과,값 존재 및 타입/길이/코드 확인
+code,모름,active,통과,값 존재 및 타입/길이/코드 확인
+code,멈춤,active,통과,값 존재 및 타입/길이/코드 확인
+code,안 멈춤,active,통과,값 존재 및 타입/길이/코드 확인
+code,안 해봄,active,통과,값 존재 및 타입/길이/코드 확인
+code,작동 안 함,active,통과,값 존재 및 타입/길이/코드 확인
+code,간헐 작동,active,통과,값 존재 및 타입/길이/코드 확인
+code,오작동,active,통과,값 존재 및 타입/길이/코드 확인
+code,있음,active,통과,값 존재 및 타입/길이/코드 확인
+code,없음,active,통과,값 존재 및 타입/길이/코드 확인
+code,물,active,통과,값 존재 및 타입/길이/코드 확인
+code,오일,active,통과,값 존재 및 타입/길이/코드 확인
+code,냉각수,active,통과,값 존재 및 타입/길이/코드 확인
+code,기타,active,통과,값 존재 및 타입/길이/코드 확인
+code,우천,active,통과,값 존재 및 타입/길이/코드 확인
+code,세차,active,통과,값 존재 및 타입/길이/코드 확인
+code,주행 후,active,통과,값 존재 및 타입/길이/코드 확인
+code,상시,active,통과,값 존재 및 타입/길이/코드 확인
+code,긁힘,active,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,active,통과,값 존재 및 타입/길이/코드 확인
+code,색 차이,active,통과,값 존재 및 타입/길이/코드 확인
+code,부식,active,통과,값 존재 및 타입/길이/코드 확인
+code,기타,active,통과,값 존재 및 타입/길이/코드 확인
+code,예,active,통과,값 존재 및 타입/길이/코드 확인
+code,아니오,active,통과,값 존재 및 타입/길이/코드 확인
+code,모름,active,통과,값 존재 및 타입/길이/코드 확인
+code,곰팡이,active,통과,값 존재 및 타입/길이/코드 확인
+code,탄 냄새,active,통과,값 존재 및 타입/길이/코드 확인
+code,연료,active,통과,값 존재 및 타입/길이/코드 확인
+code,기타,active,통과,값 존재 및 타입/길이/코드 확인
+code,냉방,active,통과,값 존재 및 타입/길이/코드 확인
+code,난방,active,통과,값 존재 및 타입/길이/코드 확인
+code,송풍,active,통과,값 존재 및 타입/길이/코드 확인
+code,꺼짐,active,통과,값 존재 및 타입/길이/코드 확인
+code,단차,active,통과,값 존재 및 타입/길이/코드 확인
+code,유격,active,통과,값 존재 및 타입/길이/코드 확인
+code,들뜸,active,통과,값 존재 및 타입/길이/코드 확인
+code,기타,active,통과,값 존재 및 타입/길이/코드 확인
+code,없음,active,통과,값 존재 및 타입/길이/코드 확인
+code,내장재 탈착,active,통과,값 존재 및 타입/길이/코드 확인
+code,용품 장착,active,통과,값 존재 및 타입/길이/코드 확인
+code,사고 수리,active,통과,값 존재 및 타입/길이/코드 확인
+code,기타,active,통과,값 존재 및 타입/길이/코드 확인

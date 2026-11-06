@@ -1,0 +1,67 @@
+﻿table,column,data_type,required,input_method,validation
+voc,voc_id,문자열(20),필수,자동 생성,최대 20자; VOC-연도-일련번호
+voc,received_at,날짜시간,필수,직접 입력; 기본값 현재 일시,YYYY-MM-DD HH:MM
+voc,channel,코드,필수,단일 선택,code.group=channel
+voc,grade,코드,필수,단일 선택,code.group=grade
+voc,owner,문자열(30),필수,직접 입력,최대 30자
+voc,vin,문자열(17),필수,직접 입력,정확히 17자; vehicle.vin 참조
+voc,mileage_km,정수,필수,숫자 입력,소수점 없는 0 이상 정수
+voc,voc_type,코드,필수,단일 선택,code.group=voc_type
+voc,system,코드,필수,단일 선택,code.group=system
+voc,part_name,문자열(50),필수,직접 입력,최대 50자
+voc,part_no,문자열(20),선택,직접 입력,최대 20자; VIN과 함께 부품 이력 조회
+voc,symptom,긴 글,필수,여러 줄 텍스트 입력,최대 2000자
+voc,frequency,코드,필수,단일 선택,code.group=frequency
+voc,reproduced,코드,필수,단일 선택,code.group=reproduced
+voc,type_detail,JSON,유형별 필수,유형별 동적 폼,JSON 객체; type_detail_fields.csv 참조
+voc,media_links,링크 목록,선택,주소 입력,여러 URL은 쉼표로 연결; CSV 인용 처리
+voc,similar_ids,문자열(200),선택,자동 조회 결과,최대 200자; 여러 ID는 쉼표로 연결
+voc,stage,코드,필수,자동 설정,code.group=stage; 접수 저장 시 D3
+voc,due_at,날짜,필수,자동 계산,YYYY-MM-DD; 단계 및 등급 기준
+voc,created_at,날짜시간,필수,자동 기록,YYYY-MM-DD HH:MM
+voc,closed_at,날짜시간,종결 시,자동 기록,YYYY-MM-DD HH:MM; 미종결은 공란
+voc,alerted_on,날짜,알림 발송 시,자동 기록,YYYY-MM-DD; 미발송은 공란
+voc_8d,voc_id,문자열(20),연결키,자동 설정,voc.voc_id 참조; VOC당 1행
+voc_8d,team,문자열(200),필수 명시 없음,직접 입력,최대 200자; D1
+voc_8d,d3_scope,긴 글,D3 완료 시 필수,여러 줄 텍스트 입력,최대 2000자
+voc_8d,d3_action,긴 글,D3 완료 시 필수,여러 줄 텍스트 입력,최대 2000자
+voc_8d,d3_done_at,날짜시간,D3 완료 시 생성,자동 기록,YYYY-MM-DD HH:MM
+voc_8d,d4_occur_cause,긴 글,D4 완료 시 필수,여러 줄 텍스트 입력,최대 2000자
+voc_8d,d4_escape_cause,긴 글,D4 완료 시 필수,여러 줄 텍스트 입력,최대 2000자
+voc_8d,d4_method,코드,필수 명시 없음,단일 선택,code.group=d4_method
+voc_8d,d4_verified,코드,D4 완료 시 필수,단일 선택,code.group=d4_verified; 완료 조건은 재현됨
+voc_8d,d4_done_at,날짜시간,D4 완료 시 생성,자동 기록,YYYY-MM-DD HH:MM
+voc_8d,d5_occur_action,긴 글,대책 단계 완료 시 필수,여러 줄 텍스트 입력,최대 2000자
+voc_8d,d5_escape_action,긴 글,대책 단계 완료 시 필수,여러 줄 텍스트 입력,최대 2000자
+voc_8d,d6_cutover,문자열(50),대책 단계 완료 시 필수,직접 입력,최대 50자; 적용 시작 VIN 또는 LOT
+voc_8d,d6_criteria,긴 글,대책 단계 완료 시 필수,여러 줄 텍스트 입력,최대 2000자; 효과 검증 전에 입력
+voc_8d,d6_result,코드,효과 검증 시 필수,단일 선택,code.group=d6_result; 불합격이면 D4 복귀
+voc_8d,d6_evidence,긴 글,효과 검증 시 필수,여러 줄 텍스트 입력,최대 2000자
+voc_8d,d7_docs,문자열(200),종결 시 필수,직접 입력,최대 200자
+voc_8d,d7_horizontal,문자열(200),종결 시 필수,직접 입력,최대 200자; 대상이 없으면 없음
+voc_8d,d8_customer,코드,종결 시 필수,단일 선택,code.group=d8_customer
+voc_stage_log,log_id,정수,자동키,자동 증가,소수점 없는 정수
+voc_stage_log,voc_id,문자열(20),연결키,자동 기록,voc.voc_id 참조
+voc_stage_log,from_stage,코드,단계 변경 시 기록,자동 기록,code.group=stage
+voc_stage_log,to_stage,코드,단계 변경 시 기록,자동 기록,code.group=stage
+voc_stage_log,changed_by,문자열(30),단계 변경 시 기록,변경 사용자 자동 기록,최대 30자
+voc_stage_log,changed_at,날짜시간,단계 변경 시 기록,자동 기록,YYYY-MM-DD HH:MM
+voc_stage_log,note,문자열(200),필수 명시 없음,메모 입력 후 이력 저장,최대 200자
+vehicle,vin,문자열(17),연결키,예시 마스터 입력; VOC에서 자동 조회,정확히 17자
+vehicle,model,문자열(30),필수 명시 없음,예시 마스터 입력; VOC에서 자동 조회,최대 30자
+vehicle,model_year,정수,필수 명시 없음,예시 마스터 입력; VOC에서 자동 조회,소수점 없는 정수
+vehicle,prod_date,날짜,필수 명시 없음,예시 마스터 입력; VOC에서 자동 조회,YYYY-MM-DD
+vehicle,plant,문자열(20),필수 명시 없음,예시 마스터 입력; VOC에서 자동 조회,최대 20자
+vehicle,line,문자열(20),필수 명시 없음,예시 마스터 입력; VOC에서 자동 조회,최대 20자
+vehicle,shift,코드,필수 명시 없음,마스터에서 단일 선택; VOC에서 자동 조회,code.group=shift
+vehicle_part,vin,문자열(17),연결키,예시 마스터 입력; VOC에서 자동 조회,정확히 17자; vehicle.vin 참조
+vehicle_part,part_no,문자열(20),조회에 사용,예시 마스터 입력; VOC에서 자동 조회,최대 20자
+vehicle_part,part_name,문자열(50),필수 명시 없음,예시 마스터 입력; VOC에서 자동 조회,최대 50자
+vehicle_part,part_lot,문자열(30),필수 명시 없음,예시 마스터 입력; VOC에서 자동 조회,최대 30자
+vehicle_part,supplier,문자열(50),필수 명시 없음,예시 마스터 입력; VOC에서 자동 조회,최대 50자
+vehicle_part,received_date,날짜,필수 명시 없음,예시 마스터 입력; VOC에서 자동 조회,YYYY-MM-DD
+code,group,문자열(30),코드 묶음 식별,선택지 마스터 입력,최대 30자
+code,code,문자열(20),코드값 식별,선택지 마스터 입력,최대 20자; group과 함께 식별
+code,label,문자열(50),필수 명시 없음,선택지 마스터 입력,최대 50자
+code,sort,정수,필수 명시 없음,정수 입력,소수점 없는 정수
+code,active,예/아니오,필수 명시 없음,예/아니오 선택,CSV는 예 또는 아니오; boolean 저장소는 true 또는 false로 변환

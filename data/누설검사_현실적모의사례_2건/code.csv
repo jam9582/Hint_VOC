@@ -1,0 +1,106 @@
+﻿group,code,label,sort,active
+voc_type,NVH,소음·진동,1,예
+voc_type,FUNC,기능 고장,2,예
+voc_type,ELEC,전장·전자,3,예
+voc_type,LEAK,누수·누유,4,예
+voc_type,APPR,외관·도장,5,예
+voc_type,ODOR,냄새·공조,6,예
+voc_type,TRIM,내장 조립·마감,7,예
+voc_type,ETC,기타,8,예
+channel,고객센터,고객센터,1,예
+channel,딜러,딜러,2,예
+channel,정비소,정비소,3,예
+channel,온라인,온라인,4,예
+channel,사내,사내,5,예
+grade,안전·법규,안전·법규,1,예
+grade,기능,기능,2,예
+grade,감성,감성,3,예
+system,차체,차체,1,예
+system,외장,외장,2,예
+system,내장,내장,3,예
+system,샤시,샤시,4,예
+system,파워트레인,파워트레인,5,예
+system,전장,전장,6,예
+system,공조,공조,7,예
+system,기타,기타,8,예
+frequency,항상,항상,1,예
+frequency,간헐,간헐,2,예
+frequency,1회,1회,3,예
+reproduced,재현됨,재현됨,1,예
+reproduced,재현 안 됨,재현 안 됨,2,예
+reproduced,확인 전,확인 전,3,예
+stage,D3,D3,1,예
+stage,D4,D4,2,예
+stage,D5-D6,D5-D6,3,예
+stage,D6검증,D6검증,4,예
+stage,D7-D8,D7-D8,5,예
+stage,종결,종결,6,예
+shift,주간,주간,1,예
+shift,야간,야간,2,예
+d4_method,5Why,5Why,1,예
+d4_method,특성요인도,특성요인도,2,예
+d4_method,재현 시험,재현 시험,3,예
+d4_method,기타,기타,4,예
+d4_verified,재현됨,재현됨,1,예
+d4_verified,재현 안 됨,재현 안 됨,2,예
+d6_result,합격,합격,1,예
+d6_result,불합격,불합격,2,예
+d8_customer,해결 확인,해결 확인,1,예
+d8_customer,미해결,미해결,2,예
+d8_customer,연락 안 됨,연락 안 됨,3,예
+sound_kind,덜그럭,덜그럭,1,예
+sound_kind,찌익,찌익,2,예
+sound_kind,딱딱,딱딱,3,예
+sound_kind,웅웅,웅웅,4,예
+sound_kind,떨림,떨림,5,예
+sound_kind,기타,기타,6,예
+road,요철·방지턱,요철·방지턱,1,예
+road,비포장,비포장,2,예
+road,평탄한 길도,평탄한 길도,3,예
+road,모름,모름,4,예
+speed,정차,정차,1,예
+speed,저속,저속,2,예
+speed,중속,중속,3,예
+speed,고속,고속,4,예
+speed,모름,모름,5,예
+press_test,멈춤,멈춤,1,예
+press_test,안 멈춤,안 멈춤,2,예
+press_test,안 해봄,안 해봄,3,예
+failure_mode,작동 안 함,작동 안 함,1,예
+failure_mode,간헐 작동,간헐 작동,2,예
+failure_mode,오작동,오작동,3,예
+warning_lamp,있음,있음,1,예
+warning_lamp,없음,없음,2,예
+fluid,물,물,1,예
+fluid,오일,오일,2,예
+fluid,냉각수,냉각수,3,예
+fluid,기타,기타,4,예
+trigger,우천,우천,1,예
+trigger,세차,세차,2,예
+trigger,주행 후,주행 후,3,예
+trigger,상시,상시,4,예
+damage,긁힘,긁힘,1,예
+damage,들뜸,들뜸,2,예
+damage,색 차이,색 차이,3,예
+damage,부식,부식,4,예
+damage,기타,기타,5,예
+since_delivery,예,예,1,예
+since_delivery,아니오,아니오,2,예
+since_delivery,모름,모름,3,예
+odor_kind,곰팡이,곰팡이,1,예
+odor_kind,탄 냄새,탄 냄새,2,예
+odor_kind,연료,연료,3,예
+odor_kind,기타,기타,4,예
+hvac_mode,냉방,냉방,1,예
+hvac_mode,난방,난방,2,예
+hvac_mode,송풍,송풍,3,예
+hvac_mode,꺼짐,꺼짐,4,예
+defect,단차,단차,1,예
+defect,유격,유격,2,예
+defect,들뜸,들뜸,3,예
+defect,기타,기타,4,예
+repair_history,없음,없음,1,예
+repair_history,내장재 탈착,내장재 탈착,2,예
+repair_history,용품 장착,용품 장착,3,예
+repair_history,사고 수리,사고 수리,4,예
+repair_history,기타,기타,5,예

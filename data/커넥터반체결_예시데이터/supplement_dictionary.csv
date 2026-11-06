@@ -1,0 +1,30 @@
+﻿table,column,data_type,required,input_method,validation
+eol_inspection,event_id,정수,보조 표 필수,자동 채번,소수점 없는 0 이상 정수
+eol_inspection,voc_id,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,voc.voc_id 참조
+eol_inspection,vin,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,vehicle.vin 참조; 17자
+eol_inspection,detected_at,날짜시간,보조 표 필수,가상 검사 기록 또는 확인 결과,YYYY-MM-DD HH:MM
+eol_inspection,equipment_id,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+eol_inspection,connector_state,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+eol_inspection,confirmation_method_before,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+eol_inspection,line_noise_condition,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+eol_inspection,eol_result_before,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+eol_inspection,dtc,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+eol_inspection,containment_repair,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+eol_inspection,eol_result_after,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+eol_inspection,shipped_before_containment,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+eol_inspection,example_flag,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+verification_summary,report_id,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+verification_summary,period_start,날짜,보조 표 필수,가상 검사 기록 또는 확인 결과,YYYY-MM-DD
+verification_summary,period_end,날짜,보조 표 필수,가상 검사 기록 또는 확인 결과,YYYY-MM-DD
+verification_summary,check_item,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+verification_summary,sample_count,정수,보조 표 필수,가상 검사 기록 또는 확인 결과,소수점 없는 0 이상 정수
+verification_summary,expected_result,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+verification_summary,matched_count,정수,보조 표 필수,가상 검사 기록 또는 확인 결과,소수점 없는 0 이상 정수
+verification_summary,unmatched_count,정수,보조 표 필수,자동 계산,sample_count-matched_count
+verification_summary,judgement,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+verification_summary,example_flag,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+required_field_check,voc_id,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,voc.voc_id 참조
+required_field_check,stage,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+required_field_check,field,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+required_field_check,check,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도
+required_field_check,result,문자열,보조 표 필수,가상 검사 기록 또는 확인 결과,가상 예시값; 앱의 선택 코드 표와 별도

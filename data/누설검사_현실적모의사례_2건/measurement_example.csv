@@ -1,0 +1,7 @@
+﻿measurement_id,voc_id,sample_id,sample_kind,tested_at,attempt_no,ambient_temp_c,part_temp_c,gas_temp_c,warmup_minutes,stabilization_seconds,hold_seconds,initial_pressure_kpa,final_pressure_kpa,pressure_drop_kpa,ng_limit_kpa,judgement,example_flag
+1,VOC-2026-0201,MOCK-SEALED-REF-1,밀봉 정상 기준품,2026-10-01 08:10,1,18.0,12.0,23.0,30,5,30,500.0,497.6,2.4,1.0,NG,모의
+2,VOC-2026-0201,MOCK-SEALED-REF-1,밀봉 정상 기준품,2026-10-01 08:20,2,18.0,18.0,23.0,30,30,30,500.0,499.6,0.4,1.0,OK,모의
+3,VOC-2026-0201,MOCK-SEALED-REF-1,밀봉 정상 기준품,2026-10-01 08:30,3,18.0,18.0,23.0,30,30,30,500.0,499.7,0.3,1.0,OK,모의
+4,VOC-2026-0202,MOCK-SEALED-REF-2,밀봉 정상 기준품,2026-10-02 08:10,1,18.0,18.0,18.0,0,30,30,500.0,498.2,1.8,1.0,NG,모의
+5,VOC-2026-0202,MOCK-SEALED-REF-2,밀봉 정상 기준품,2026-10-02 08:20,2,18.0,18.0,18.0,30,30,30,500.0,499.7,0.3,1.0,OK,모의
+6,VOC-2026-0202,MOCK-SEALED-REF-2,밀봉 정상 기준품,2026-10-02 08:30,3,18.0,18.0,18.0,60,30,30,500.0,499.7,0.3,1.0,OK,모의
