@@ -65,26 +65,49 @@ function mondayOf(date: string) {
   return addDays(date, -((weekday + 6) % 7));
 }
 
-export type TrendWeek = { week: string; received: number; closed: number };
+export type TrendPoint = { date: string; received: number; closed: number };
 
-/** 최근 8주의 주별 접수·종결 건수. toDate는 시각을 한국 날짜로 바꾼다. */
-export function countByWeek(
+export type Trend = {
+  weekly: TrendPoint[];
+  daily: TrendPoint[];
+  cumulative: TrendPoint[];
+};
+
+/**
+ * 최근 8주의 접수·종결 추이. toDate는 시각을 한국 날짜로 바꾼다.
+ * 누적은 8주 전 건까지 합쳐서, 접수와 종결의 차이가 그날의 미종결 건수가 된다.
+ */
+export function buildTrend(
   vocs: TrendVoc[],
   today: string,
   toDate: (value: string) => string,
-): TrendWeek[] {
+): Trend {
   const lastWeek = mondayOf(today);
+  const firstDay = addDays(lastWeek, -(TREND_WEEKS - 1) * 7);
   const weeks = Array.from({ length: TREND_WEEKS }, (_, index) =>
-    addDays(lastWeek, (index - TREND_WEEKS + 1) * 7),
+    addDays(firstDay, index * 7),
   );
-  const countIn = (values: string[], week: string) =>
-    values.filter((value) => mondayOf(toDate(value)) === week).length;
-  const received = vocs.map((voc) => voc.received_at);
-  const closed = vocs.flatMap((voc) => (voc.closed_at ? [voc.closed_at] : []));
+  const days = Array.from(
+    { length: daysBetween(firstDay, today) + 1 },
+    (_, index) => addDays(firstDay, index),
+  );
+  const received = vocs.map((voc) => toDate(voc.received_at));
+  const closed = vocs.flatMap((voc) =>
+    voc.closed_at ? [toDate(voc.closed_at)] : [],
+  );
+  const pointsOf = (
+    dates: string[],
+    matches: (value: string, date: string) => boolean,
+  ) =>
+    dates.map((date) => ({
+      date,
+      received: received.filter((value) => matches(value, date)).length,
+      closed: closed.filter((value) => matches(value, date)).length,
+    }));
 
-  return weeks.map((week) => ({
-    week,
-    received: countIn(received, week),
-    closed: countIn(closed, week),
-  }));
+  return {
+    weekly: pointsOf(weeks, (value, week) => mondayOf(value) === week),
+    daily: pointsOf(days, (value, day) => value === day),
+    cumulative: pointsOf(days, (value, day) => value <= day),
+  };
 }

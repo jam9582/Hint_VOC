@@ -15,8 +15,8 @@ import {
   type StatusSort,
 } from "@/lib/db/status";
 import {
+  buildTrend,
   countByStage,
-  countByWeek,
   getDueState,
 } from "@/lib/rules/dashboard";
 import type { CodeRow } from "@/types/database";
@@ -142,7 +142,7 @@ async function Dashboard({
           <h2 className="card-title">핵심 지표</h2>
           <MetricsSummary overdueOnly={params.overdue === "1"} />
           <TrendChart
-            weeks={countByWeek(vocs, today, (value) =>
+            trend={buildTrend(vocs, today, (value) =>
               toSeoulDate(new Date(value)),
             )}
           />

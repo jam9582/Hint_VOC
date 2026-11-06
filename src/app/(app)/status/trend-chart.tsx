@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import type { TrendWeek } from "@/lib/rules/dashboard";
+import { useState, type PointerEvent } from "react";
+import type { Trend } from "@/lib/rules/dashboard";
 
 const WIDTH = 700;
 const HEIGHT = 120;
@@ -12,22 +12,45 @@ const SERIES = [
   { key: "closed", label: "종결", color: "#ff7a59" },
 ] as const;
 
-const shortDate = (week: string) =>
-  `${Number(week.slice(5, 7))}/${Number(week.slice(8))}`;
+const VIEWS = [
+  { key: "weekly", label: "주별", note: "최근 8주 · 주별 건수", dateTitle: "주 시작일" },
+  { key: "daily", label: "날짜별", note: "최근 8주 · 날짜별 건수", dateTitle: "날짜" },
+  { key: "cumulative", label: "누적", note: "최근 8주 · 전체 기간 누적 건수", dateTitle: "날짜" },
+] as const;
 
-/** 최근 8주 접수·종결 건수. 값은 줄에 올리면 보이고, 표로도 읽을 수 있다. */
-export function TrendChart({ weeks }: { weeks: TrendWeek[] }) {
+type ViewKey = (typeof VIEWS)[number]["key"];
+
+const shortDate = (date: string) =>
+  `${Number(date.slice(5, 7))}/${Number(date.slice(8))}`;
+
+/** 최근 8주 접수·종결 추이. 값은 줄에 올리면 보이고, 표로도 읽을 수 있다. */
+export function TrendChart({ trend }: { trend: Trend }) {
+  const [viewKey, setViewKey] = useState<ViewKey>("weekly");
   const [hovered, setHovered] = useState<number | null>(null);
-  const max = Math.max(1, ...weeks.flatMap((w) => [w.received, w.closed]));
+  const view = VIEWS.find((item) => item.key === viewKey) ?? VIEWS[0];
+  const points = trend[viewKey];
+  const lastIndex = points.length - 1;
+  const max = Math.max(1, ...points.flatMap((p) => [p.received, p.closed]));
   const xOf = (index: number) =>
-    PAD + (index * (WIDTH - PAD * 2)) / (weeks.length - 1);
+    PAD + (index * (WIDTH - PAD * 2)) / lastIndex;
   const yOf = (value: number) =>
     HEIGHT - PAD - (value / max) * (HEIGHT - PAD * 2);
-  const active = hovered === null ? null : weeks[hovered];
+  const active = hovered === null ? null : points[hovered];
+  // 날짜별은 칸이 좁아 주 시작일(월요일)에만 날짜를 적는다.
+  const ticks = points.flatMap((point, index) =>
+    viewKey === "weekly" || index % 7 === 0 ? [{ point, index }] : [],
+  );
+
+  const hoverAt = (event: PointerEvent<HTMLDivElement>) => {
+    const box = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - box.left) / box.width) * WIDTH;
+    const index = Math.round(((x - PAD) / (WIDTH - PAD * 2)) * lastIndex);
+    setHovered(Math.min(lastIndex, Math.max(0, index)));
+  };
 
   return (
     <figure className="mt-5">
-      <figcaption className="flex items-center justify-between gap-3">
+      <figcaption className="flex flex-wrap items-center justify-between gap-3">
         <span className="flex gap-3.5 text-xs font-medium text-ink-2">
           {SERIES.map((series) => (
             <span key={series.key} className="flex items-center gap-1.5">
@@ -39,10 +62,36 @@ export function TrendChart({ weeks }: { weeks: TrendWeek[] }) {
             </span>
           ))}
         </span>
-        <span className="text-xs font-medium text-ink-3">최근 8주 · 주별 건수</span>
+        <span className="flex items-center gap-3">
+          <span className="text-xs font-medium text-ink-3">{view.note}</span>
+          <span className="flex gap-1 rounded-md bg-inset p-[3px]">
+            {VIEWS.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                aria-pressed={item.key === viewKey}
+                onClick={() => {
+                  setViewKey(item.key);
+                  setHovered(null);
+                }}
+                className={`rounded-[5px] px-2.5 py-1 text-xs font-semibold ${
+                  item.key === viewKey
+                    ? "bg-card text-primary shadow-card"
+                    : "text-ink-2"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </span>
+        </span>
       </figcaption>
 
-      <div className="relative mt-2" onMouseLeave={() => setHovered(null)}>
+      <div
+        className="relative mt-2"
+        onPointerMove={hoverAt}
+        onPointerLeave={() => setHovered(null)}
+      >
         <svg
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
           preserveAspectRatio="none"
@@ -80,8 +129,8 @@ export function TrendChart({ weeks }: { weeks: TrendWeek[] }) {
               strokeLinecap="round"
               strokeLinejoin="round"
               vectorEffect="non-scaling-stroke"
-              points={weeks
-                .map((week, index) => `${xOf(index)},${yOf(week[series.key])}`)
+              points={points
+                .map((point, index) => `${xOf(index)},${yOf(point[series.key])}`)
                 .join(" ")}
             />
           ))}
@@ -90,57 +139,65 @@ export function TrendChart({ weeks }: { weeks: TrendWeek[] }) {
           {max}건
         </span>
 
-        <div className="absolute inset-0 flex">
-          {weeks.map((week, index) => (
-            <div
-              key={week.week}
-              className="flex-1"
-              onMouseEnter={() => setHovered(index)}
-            />
-          ))}
-        </div>
-
         {active && hovered !== null && (
           <div
             className="pointer-events-none absolute top-1 z-10 rounded-md bg-ink px-2.5 py-1.5 text-[11px] font-medium whitespace-nowrap text-white shadow-card"
             style={
-              hovered < weeks.length / 2
-                ? { left: `calc(${(hovered / (weeks.length - 1)) * 100}% + 10px)` }
-                : { right: `calc(${(1 - hovered / (weeks.length - 1)) * 100}% + 10px)` }
+              hovered < points.length / 2
+                ? { left: `calc(${(hovered / lastIndex) * 100}% + 10px)` }
+                : { right: `calc(${(1 - hovered / lastIndex) * 100}% + 10px)` }
             }
           >
-            <p>{shortDate(active.week)} 주</p>
+            <p>
+              {shortDate(active.date)}
+              {viewKey === "weekly" && " 주"}
+            </p>
             {SERIES.map((series) => (
               <p key={series.key}>
                 {series.label} {active[series.key]}건
               </p>
             ))}
+            {viewKey === "cumulative" && (
+              <p>미종결 {active.received - active.closed}건</p>
+            )}
           </div>
         )}
       </div>
 
-      <div className="mt-1 flex justify-between text-[11px] font-medium text-ink-3">
-        {weeks.map((week) => (
-          <span key={week.week}>{shortDate(week.week)}</span>
+      <div className="relative mt-1 h-4 text-[11px] font-medium text-ink-3">
+        {ticks.map(({ point, index }) => (
+          <span
+            key={point.date}
+            className={`absolute ${
+              index === 0
+                ? ""
+                : index === lastIndex
+                  ? "-translate-x-full"
+                  : "-translate-x-1/2"
+            }`}
+            style={{ left: `${(index / lastIndex) * 100}%` }}
+          >
+            {shortDate(point.date)}
+          </span>
         ))}
       </div>
 
       <div className="sr-only">
       <table>
-        <caption>주별 접수와 종결 건수</caption>
+        <caption>{view.note}</caption>
         <thead>
           <tr>
-            <th scope="col">주 시작일</th>
+            <th scope="col">{view.dateTitle}</th>
             <th scope="col">접수</th>
             <th scope="col">종결</th>
           </tr>
         </thead>
         <tbody>
-          {weeks.map((week) => (
-            <tr key={week.week}>
-              <th scope="row">{week.week}</th>
-              <td>{week.received}</td>
-              <td>{week.closed}</td>
+          {points.map((point) => (
+            <tr key={point.date}>
+              <th scope="row">{point.date}</th>
+              <td>{point.received}</td>
+              <td>{point.closed}</td>
             </tr>
           ))}
         </tbody>
