@@ -1,4 +1,4 @@
-import { VOC_TYPES, type Stage, type VocType } from "@/types/codes";
+import type { Stage } from "@/types/codes";
 import { getTypeDetailFields } from "@/types/type-detail";
 import { getStageFields, type StageFieldKey } from "./stage-fields";
 
@@ -29,10 +29,6 @@ export const REGISTER_FIELD_NAMES = Object.keys(
   REGISTER_REQUIRED,
 ) as (keyof RegisterFields)[];
 
-export function isVocType(value: string): value is VocType {
-  return (VOC_TYPES as readonly string[]).includes(value);
-}
-
 export function hasProblems({ missing, invalid }: FormProblems) {
   return missing.length > 0 || invalid.length > 0;
 }
@@ -53,9 +49,7 @@ export function validateRegistration(
     invalid.push("주행거리는 0 이상의 정수여야 합니다.");
   }
 
-  if (fields.voc_type && !isVocType(fields.voc_type)) {
-    invalid.push("유형을 다시 선택해 주세요.");
-  } else if (isVocType(fields.voc_type)) {
+  if (fields.voc_type) {
     for (const field of getTypeDetailFields(fields.voc_type)) {
       const value = detail[field.key];
       if (!value) {

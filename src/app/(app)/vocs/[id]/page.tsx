@@ -13,6 +13,7 @@ import { STAGES, type CodeOptions, type Stage } from "@/types/codes";
 import { getTypeDetailFields } from "@/types/type-detail";
 import { HistoryPanel } from "../../history-panel";
 import { SimilarPanel } from "../../similar-panel";
+import { DeleteVocButton } from "./delete-voc-button";
 import { StageForm } from "./stage-form";
 
 const stageIndex = (stage: Stage) => STAGES.indexOf(stage);
@@ -167,7 +168,7 @@ function StageLogs({ logs }: { logs: VocDetail["logs"] }) {
 }
 
 async function VocContent({ params }: { params: Promise<{ id: string }> }) {
-  await requireUser();
+  const user = await requireUser();
   const { id } = await params;
   const [detail, codes] = await Promise.all([
     getVocDetail(id),
@@ -191,6 +192,7 @@ async function VocContent({ params }: { params: Promise<{ id: string }> }) {
           ? ` · 종결 ${voc.closed_at ? formatDateTime(voc.closed_at) : ""}`
           : ` · 기한 ${voc.due_at}${overdue ? " (기한 초과)" : ""}`}
       </p>
+      {user.role === "admin" && <DeleteVocButton vocId={voc.voc_id} />}
       <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
         <div className="flex flex-col gap-4">
           <ReceiptSection voc={voc} team={voc8d.team} labelOf={labelOf} />

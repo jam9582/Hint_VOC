@@ -92,3 +92,12 @@ export async function advanceVocStage(args: {
   });
   if (error) throw new Error(error.message);
 }
+
+/** VOC를 지운다. 호출 전에 requireAdmin으로 확인한다. */
+export async function deleteVoc(vocId: string) {
+  const { error } = await createAdminClient()
+    .from("voc")
+    .delete()
+    .eq("voc_id", vocId);
+  if (error) throw new Error(error.message);
+}

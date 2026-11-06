@@ -1,9 +1,9 @@
-import type { Stage, VocType } from "./codes";
+import type { Stage } from "./codes";
 
 /**
  * PRD 7장 표 구조. 이름과 NOT NULL은 7장 그대로다.
  * 7장에 NOT NULL 표시가 없는 열은 null이 될 수 있는 것으로 둔다.
- * 코드 열은 code 표에 있는 값이며, 업무 규칙이 쓰는 stage와 voc_type만 좁은 타입으로 둔다.
+ * 코드 열은 code 표에 있는 값이며, 업무 규칙이 쓰는 stage만 좁은 타입으로 둔다.
  */
 
 export type Json =
@@ -23,7 +23,7 @@ export type VocRow = {
   owner: string;
   vin: string;
   mileage_km: number;
-  voc_type: VocType;
+  voc_type: string;
   system: string;
   part_name: string;
   part_no: string | null;

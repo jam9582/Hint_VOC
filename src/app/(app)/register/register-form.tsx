@@ -6,7 +6,6 @@ import type {
   CodeGroup,
   CodeOption,
   CodeOptions,
-  VocType,
 } from "@/types/codes";
 import { getTypeDetailFields, type TypeDetailField } from "@/types/type-detail";
 import { HistoryPanel } from "../history-panel";
@@ -246,7 +245,7 @@ function FormFields({
           <fieldset className="mt-4 rounded border border-zinc-300 p-4">
             <legend className="px-1 font-medium">유형별 추가 항목</legend>
             <div className="grid gap-4 sm:grid-cols-2">
-              {getTypeDetailFields(vocType as VocType).map((field) => (
+              {getTypeDetailFields(vocType).map((field) => (
                 <TypeDetailInput
                   key={`${vocType}.${field.key}`}
                   field={field}

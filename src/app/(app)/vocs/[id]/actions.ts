@@ -1,9 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { requireUser } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { requireAdmin, requireUser } from "@/lib/auth";
 import {
   advanceVocStage,
+  deleteVoc,
   getVocDetail,
   saveVoc8d,
   type VocDetail,
@@ -117,4 +119,12 @@ export async function advanceStageAction(
       message: "단계를 옮기지 못했습니다. 화면을 새로고침해 확인해 주세요.",
     };
   }
+}
+
+/** VOC를 지운다. 8D 내용과 단계 이력도 함께 지워진다. 관리자만 쓴다. */
+export async function deleteVocAction(vocId: string) {
+  await requireAdmin();
+  await deleteVoc(vocId);
+  revalidatePath("/status");
+  redirect("/status");
 }

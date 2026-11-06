@@ -20,6 +20,9 @@ export const CODE_GROUPS = [
 ] as const;
 export type CodeGroup = (typeof CODE_GROUPS)[number];
 
+/** 업무 규칙이 값을 직접 쓰는 묶음. 관리자 화면에서 바꾸지 못한다. */
+export const LOCKED_CODE_GROUPS: readonly CodeGroup[] = ["stage", "d6_result"];
+
 export type CodeOption = { value: string; label: string };
 export type CodeOptions = Partial<Record<CodeGroup, CodeOption[]>>;
 

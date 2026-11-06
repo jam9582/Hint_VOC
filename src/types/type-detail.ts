@@ -102,7 +102,13 @@ export const TYPE_DETAIL_FIELDS: Record<VocType, readonly TypeDetailField[]> = {
       input: "select",
       options: ["긁힘", "들뜸", "색 차이", "부식", "기타"],
     },
-    { key: "size_mm", label: "크기", required: false, input: "integer", unit: "mm" },
+    {
+      key: "size_mm",
+      label: "크기",
+      required: false,
+      input: "integer",
+      unit: "mm",
+    },
     {
       key: "since_delivery",
       label: "출고 때부터",
@@ -150,7 +156,8 @@ export const COMMON_DETAIL_FIELDS: readonly TypeDetailField[] = [
   },
 ];
 
-/** 고른 유형의 폼에 보여 줄 항목 전체. */
-export function getTypeDetailFields(type: VocType): readonly TypeDetailField[] {
-  return [...TYPE_DETAIL_FIELDS[type], ...COMMON_DETAIL_FIELDS];
+/** 고른 유형의 폼에 보여 줄 항목 전체. code 표로 추가한 유형은 공통 항목만 나온다. */
+export function getTypeDetailFields(type: string): readonly TypeDetailField[] {
+  const own = TYPE_DETAIL_FIELDS[type as VocType] ?? [];
+  return [...own, ...COMMON_DETAIL_FIELDS];
 }
