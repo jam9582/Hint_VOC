@@ -142,7 +142,24 @@ export type Database = {
       profiles: Table<ProfileRow, ProfileInsert>;
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      register_voc: {
+        Args: { p_voc: Json; p_team: string; p_changed_by: string };
+        Returns: string;
+      };
+      advance_voc_stage: {
+        Args: {
+          p_voc_id: string;
+          p_from_stage: Stage;
+          p_to_stage: Stage;
+          p_due_at: string;
+          p_8d: Json;
+          p_changed_by: string;
+          p_note?: string;
+        };
+        Returns: undefined;
+      };
+    };
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;
   };
