@@ -279,6 +279,33 @@ function StageLogs({ logs }: { logs: VocDetail["logs"] }) {
   );
 }
 
+/** 접수 정보를 고친 기록. 고친 적이 없으면 보이지 않는다. */
+function EditLogs({ logs }: { logs: VocDetail["editLogs"] }) {
+  if (logs.length === 0) return null;
+  return (
+    <section className="card p-5">
+      <h3 className="card-title">수정 이력</h3>
+      <ol className="mt-3 flex flex-col gap-3">
+        {logs.map((log) => (
+          <li key={log.log_id} className="text-xs font-medium">
+            <p className="font-semibold break-words">{log.reason}</p>
+            <p className="text-ink-3">
+              {formatDateTime(log.changed_at)} · {log.changed_by}
+            </p>
+            <ul className="mt-1 flex flex-col gap-0.5 text-ink-2">
+              {log.changes.map((change) => (
+                <li key={change.label} className="break-words">
+                  {change.label}: {change.before ?? "-"} → {change.after ?? "-"}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
 function Fact({ label, value }: { label: string; value: string }) {
   return (
     <span className="rounded-xl bg-inset px-2.5 py-[3px] text-xs font-medium text-ink-2">
@@ -300,7 +327,7 @@ async function VocContent({ params }: { params: Promise<{ id: string }> }) {
   const options = toCodeOptions(codes);
   const labelOf = (group: keyof CodeOptions, value: string) =>
     options[group]?.find((option) => option.value === value)?.label ?? value;
-  const { voc, voc8d, logs } = detail;
+  const { voc, voc8d, logs, editLogs } = detail;
   const closed = voc.stage === "종결";
   const today = toSeoulDate(new Date());
   const overdue = !closed && voc.due_at < today;
@@ -344,7 +371,17 @@ async function VocContent({ params }: { params: Promise<{ id: string }> }) {
             )}
           </p>
           <StageProgress stage={voc.stage} overdue={overdue} wide />
-          {user.role === "admin" && <DeleteVocButton vocId={voc.voc_id} />}
+          {user.role === "admin" && (
+            <div className="flex items-center gap-2">
+              <Link
+                href={`/vocs/${voc.voc_id}/edit`}
+                className="btn btn-light btn-sm"
+              >
+                VOC 수정
+              </Link>
+              <DeleteVocButton vocId={voc.voc_id} />
+            </div>
+          )}
         </div>
       </section>
 
@@ -375,6 +412,7 @@ async function VocContent({ params }: { params: Promise<{ id: string }> }) {
             />
           </div>
           <StageLogs logs={logs} />
+          <EditLogs logs={editLogs} />
         </aside>
       </div>
     </>

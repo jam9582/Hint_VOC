@@ -14,7 +14,27 @@ import { registerVocAction, type RegisterResult } from "./actions";
 
 const inputClass = "input";
 
-function Field({
+/** 수정 화면에서 채워 둘 값. 등록 화면은 쓰지 않는다. */
+export type VocFormInitial = {
+  voc_id: string;
+  channel: string;
+  grade: string;
+  owner: string;
+  team: string;
+  vin: string;
+  mileage_km: string;
+  part_name: string;
+  part_no: string;
+  voc_type: string;
+  system: string;
+  frequency: string;
+  reproduced: string;
+  symptom: string;
+  media_links: string;
+  detail: Record<string, string>;
+};
+
+export function Field({
   label,
   required,
   children,
@@ -52,25 +72,32 @@ function SelectField({
   name,
   options,
   required,
+  defaultValue = "",
   onChange,
 }: {
   label: string;
   name: string;
   options: readonly CodeOption[];
   required?: boolean;
+  defaultValue?: string;
   onChange?: (value: string) => void;
 }) {
+  // 지금은 쓰지 않는 코드가 저장되어 있어도 선택된 채로 보여 준다.
+  const shown =
+    defaultValue && !options.some((option) => option.value === defaultValue)
+      ? [...options, { value: defaultValue, label: defaultValue }]
+      : options;
   return (
     <Field label={label} required={required}>
       <select
         name={name}
         required={required}
-        defaultValue=""
+        defaultValue={defaultValue}
         onChange={(event) => onChange?.(event.target.value)}
         className={inputClass}
       >
         <option value="">선택</option>
-        {options.map((option) => (
+        {shown.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
@@ -80,7 +107,13 @@ function SelectField({
   );
 }
 
-function TypeDetailInput({ field }: { field: TypeDetailField }) {
+function TypeDetailInput({
+  field,
+  defaultValue,
+}: {
+  field: TypeDetailField;
+  defaultValue?: string;
+}) {
   const name = `detail.${field.key}`;
   if (field.input === "select") {
     return (
@@ -88,6 +121,7 @@ function TypeDetailInput({ field }: { field: TypeDetailField }) {
         label={field.label}
         name={name}
         required={field.required}
+        defaultValue={defaultValue}
         options={field.options.map((value) => ({ value, label: value }))}
       />
     );
@@ -102,13 +136,14 @@ function TypeDetailInput({ field }: { field: TypeDetailField }) {
         min={field.input === "integer" ? 0 : undefined}
         step={field.input === "integer" ? 1 : undefined}
         required={field.required}
+        defaultValue={defaultValue}
         className={inputClass}
       />
     </Field>
   );
 }
 
-function SaveMessage({ result }: { result?: RegisterResult }) {
+export function SaveMessage({ result }: { result?: RegisterResult }) {
   if (!result || "vocId" in result) return null;
   const messages =
     "error" in result
@@ -128,21 +163,25 @@ function SaveMessage({ result }: { result?: RegisterResult }) {
   );
 }
 
-function FormFields({
+export function FormFields({
   options,
   defaultReceivedAt,
+  initial,
   pending,
   saveMessage,
+  beforeSave,
 }: {
   options: CodeOptions;
   defaultReceivedAt: string;
+  initial?: VocFormInitial;
   pending: boolean;
   saveMessage: ReactNode;
+  beforeSave?: ReactNode;
 }) {
-  const [vocType, setVocType] = useState("");
-  const [vin, setVin] = useState("");
-  const [partNo, setPartNo] = useState("");
-  const [system, setSystem] = useState("");
+  const [vocType, setVocType] = useState(initial?.voc_type ?? "");
+  const [vin, setVin] = useState(initial?.vin ?? "");
+  const [partNo, setPartNo] = useState(initial?.part_no ?? "");
+  const [system, setSystem] = useState(initial?.system ?? "");
   const list = (group: CodeGroup) => options[group] ?? [];
 
   return (
@@ -155,6 +194,7 @@ function FormFields({
               type="datetime-local"
               required
               defaultValue={defaultReceivedAt}
+              readOnly={Boolean(initial)}
               className={inputClass}
             />
           </Field>
@@ -162,12 +202,14 @@ function FormFields({
             label="접수 경로"
             name="channel"
             required
+            defaultValue={initial?.channel}
             options={list("channel")}
           />
           <SelectField
             label="등급"
             name="grade"
             required
+            defaultValue={initial?.grade}
             options={list("grade")}
           />
           <Field label="담당" required>
@@ -175,12 +217,18 @@ function FormFields({
               name="owner"
               required
               maxLength={30}
+              defaultValue={initial?.owner}
               className={inputClass}
             />
           </Field>
           <div className="sm:col-span-2">
             <Field label="팀 구성">
-              <input name="team" maxLength={200} className={inputClass} />
+              <input
+                name="team"
+                maxLength={200}
+                defaultValue={initial?.team}
+                className={inputClass}
+              />
             </Field>
           </div>
         </FormSection>
@@ -191,6 +239,7 @@ function FormFields({
               name="vin"
               required
               maxLength={17}
+              defaultValue={initial?.vin}
               onChange={(event) => setVin(event.target.value.trim())}
               className={inputClass}
             />
@@ -202,6 +251,7 @@ function FormFields({
               min={0}
               step={1}
               required
+              defaultValue={initial?.mileage_km}
               className={inputClass}
             />
           </Field>
@@ -210,6 +260,7 @@ function FormFields({
               name="part_name"
               required
               maxLength={50}
+              defaultValue={initial?.part_name}
               className={inputClass}
             />
           </Field>
@@ -217,6 +268,7 @@ function FormFields({
             <input
               name="part_no"
               maxLength={20}
+              defaultValue={initial?.part_no}
               onChange={(event) => setPartNo(event.target.value.trim())}
               className={inputClass}
             />
@@ -228,6 +280,7 @@ function FormFields({
             label="유형"
             name="voc_type"
             required
+            defaultValue={initial?.voc_type}
             options={list("voc_type")}
             onChange={setVocType}
           />
@@ -235,6 +288,7 @@ function FormFields({
             label="부위 대분류"
             name="system"
             required
+            defaultValue={initial?.system}
             options={list("system")}
             onChange={setSystem}
           />
@@ -242,12 +296,14 @@ function FormFields({
             label="발생 빈도"
             name="frequency"
             required
+            defaultValue={initial?.frequency}
             options={list("frequency")}
           />
           <SelectField
             label="재현 여부"
             name="reproduced"
             required
+            defaultValue={initial?.reproduced}
             options={list("reproduced")}
           />
           <div className="sm:col-span-2">
@@ -257,6 +313,7 @@ function FormFields({
                 required
                 maxLength={2000}
                 rows={4}
+                defaultValue={initial?.symptom}
                 className={inputClass}
               />
             </Field>
@@ -271,6 +328,11 @@ function FormFields({
                   <TypeDetailInput
                     key={`${vocType}.${field.key}`}
                     field={field}
+                    defaultValue={
+                      initial?.voc_type === vocType
+                        ? initial.detail[field.key]
+                        : undefined
+                    }
                   />
                 ))}
               </div>
@@ -281,12 +343,14 @@ function FormFields({
               <input
                 name="media_links"
                 placeholder="주소가 여러 개면 쉼표로 구분"
+                defaultValue={initial?.media_links}
                 className={inputClass}
               />
             </Field>
           </div>
         </FormSection>
 
+        {beforeSave}
         <div className="flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center">
           <button
             type="submit"
@@ -308,6 +372,7 @@ function FormFields({
             partNo={partNo}
             vocType={vocType}
             system={system}
+            excludeVocId={initial?.voc_id}
           />
         </div>
       </aside>

@@ -85,6 +85,23 @@ export type VehicleRow = {
   shift: string | null;
 };
 
+/** 수정 기록의 한 항목. 값은 화면에 보여 줄 글자다. */
+export type VocChange = {
+  label: string;
+  before: string | null;
+  after: string | null;
+};
+
+/** 7-9 */
+export type VocEditLogRow = {
+  log_id: number;
+  voc_id: string;
+  changes: VocChange[];
+  reason: string;
+  changed_by: string;
+  changed_at: string;
+};
+
 /** 7-5 */
 export type VehiclePartRow = {
   vin: string;
@@ -147,6 +164,10 @@ type StageLogInsert = Omit<VocStageLogRow, "log_id" | "changed_at"> & {
   log_id?: number;
   changed_at?: string;
 };
+type EditLogInsert = Omit<VocEditLogRow, "log_id" | "changed_at"> & {
+  log_id?: number;
+  changed_at?: string;
+};
 type ProfileInsert = Omit<ProfileRow, "created_at"> & { created_at?: string };
 
 export type Database = {
@@ -155,6 +176,7 @@ export type Database = {
       voc: Table<VocRow, VocInsert>;
       voc_8d: Table<Voc8dRow, Pick<Voc8dRow, "voc_id"> & Partial<Voc8dRow>>;
       voc_stage_log: Table<VocStageLogRow, StageLogInsert>;
+      voc_edit_log: Table<VocEditLogRow, EditLogInsert>;
       vehicle: Table<VehicleRow>;
       vehicle_part: Table<VehiclePartRow>;
       code: Table<CodeRow>;
@@ -182,6 +204,18 @@ export type Database = {
           p_exclude_voc_id?: string;
         };
         Returns: SimilarVoc[];
+      };
+      edit_voc: {
+        Args: {
+          p_voc_id: string;
+          p_stage: Stage;
+          p_voc: Json;
+          p_team: string;
+          p_changes: Json;
+          p_reason: string;
+          p_changed_by: string;
+        };
+        Returns: undefined;
       };
       advance_voc_stage: {
         Args: {

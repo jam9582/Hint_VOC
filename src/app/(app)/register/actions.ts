@@ -11,41 +11,17 @@ import { getD3DueDate } from "@/lib/rules/due-date";
 import { toSimilarIds } from "@/lib/rules/similar";
 import {
   hasProblems,
+  readTypeDetail,
   REGISTER_FIELD_NAMES,
+  toStoredDetail,
   validateRegistration,
   type FormProblems,
   type RegisterFields,
-  type TypeDetail,
 } from "@/lib/rules/validation";
 import { GRADE_SAFETY } from "@/types/codes";
-import type { Json } from "@/types/database";
-import { getTypeDetailFields } from "@/types/type-detail";
 
 export type RegisterResult =
   { vocId: string } | { problems: FormProblems } | { error: string };
-
-/** 8장 표에 있는 항목과 값만 골라 담는다. */
-function readTypeDetail(formData: FormData, type: string): TypeDetail {
-  const detail: TypeDetail = {};
-  for (const field of getTypeDetailFields(type)) {
-    const value = String(formData.get(`detail.${field.key}`) ?? "").trim();
-    if (!value) continue;
-    if (field.input === "select" && !field.options.includes(value)) continue;
-    detail[field.key] = value;
-  }
-  return detail;
-}
-
-/** 저장할 때는 정수 항목을 숫자로 바꾼다. 비어 있으면 null이다. */
-function toStoredDetail(detail: TypeDetail, type: string) {
-  const stored: Record<string, Json> = {};
-  for (const field of getTypeDetailFields(type)) {
-    const value = detail[field.key];
-    if (value === undefined) continue;
-    stored[field.key] = field.input === "integer" ? Number(value) : value;
-  }
-  return Object.keys(stored).length > 0 ? stored : null;
-}
 
 /** 유사 VOC 조회가 실패해도 접수는 저장한다. 상세 화면은 다시 계산해 보여 준다. */
 async function readSimilarIds(query: SimilarQuery) {

@@ -1,4 +1,5 @@
 import type { Stage } from "@/types/codes";
+import type { Json } from "@/types/database";
 import { getTypeDetailFields } from "@/types/type-detail";
 import { getStageFields, type StageFieldKey } from "./stage-fields";
 
@@ -28,6 +29,29 @@ export type RegisterFields = Record<keyof typeof REGISTER_REQUIRED, string>;
 export const REGISTER_FIELD_NAMES = Object.keys(
   REGISTER_REQUIRED,
 ) as (keyof RegisterFields)[];
+
+/** 8장 표에 있는 항목과 값만 골라 담는다. */
+export function readTypeDetail(formData: FormData, type: string): TypeDetail {
+  const detail: TypeDetail = {};
+  for (const field of getTypeDetailFields(type)) {
+    const value = String(formData.get(`detail.${field.key}`) ?? "").trim();
+    if (!value) continue;
+    if (field.input === "select" && !field.options.includes(value)) continue;
+    detail[field.key] = value;
+  }
+  return detail;
+}
+
+/** 저장할 때는 정수 항목을 숫자로 바꾼다. 비어 있으면 null이다. */
+export function toStoredDetail(detail: TypeDetail, type: string) {
+  const stored: Record<string, Json> = {};
+  for (const field of getTypeDetailFields(type)) {
+    const value = detail[field.key];
+    if (value === undefined) continue;
+    stored[field.key] = field.input === "integer" ? Number(value) : value;
+  }
+  return Object.keys(stored).length > 0 ? stored : null;
+}
 
 export function hasProblems({ missing, invalid }: FormProblems) {
   return missing.length > 0 || invalid.length > 0;

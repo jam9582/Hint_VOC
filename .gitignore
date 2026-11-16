@@ -42,3 +42,6 @@ next-env.d.ts
 
 # .env.example만 커밋한다 (PRD 0장 규칙 5)
 !.env.example
+
+# 팀 내부 문서는 올리지 않는다
+/docs/

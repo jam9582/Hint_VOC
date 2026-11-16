@@ -3,7 +3,7 @@ import "server-only";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import type { Stage } from "@/types/codes";
-import type { Json, Voc8dRow, VocRow } from "@/types/database";
+import type { Json, Voc8dRow, VocChange, VocRow } from "@/types/database";
 
 export type NewVoc = Pick<
   VocRow,
@@ -40,10 +40,10 @@ export async function registerVoc(
   return data;
 }
 
-/** VOC 한 건의 접수 정보, 8D 내용, 단계 이력을 읽는다. 없으면 null이다. */
+/** VOC 한 건의 접수 정보, 8D 내용, 단계 이력, 수정 기록을 읽는다. 없으면 null이다. */
 export async function getVocDetail(vocId: string) {
   const supabase = await createClient();
-  const [voc, voc8d, logs] = await Promise.all([
+  const [voc, voc8d, logs, editLogs] = await Promise.all([
     supabase.from("voc").select("*").eq("voc_id", vocId).maybeSingle(),
     supabase.from("voc_8d").select("*").eq("voc_id", vocId).maybeSingle(),
     supabase
@@ -52,12 +52,23 @@ export async function getVocDetail(vocId: string) {
       .eq("voc_id", vocId)
       .order("changed_at", { ascending: false })
       .order("log_id", { ascending: false }),
+    supabase
+      .from("voc_edit_log")
+      .select("*")
+      .eq("voc_id", vocId)
+      .order("changed_at", { ascending: false })
+      .order("log_id", { ascending: false }),
   ]);
 
-  const error = voc.error ?? voc8d.error ?? logs.error;
+  const error = voc.error ?? voc8d.error ?? logs.error ?? editLogs.error;
   if (error) throw new Error(error.message);
   if (!voc.data || !voc8d.data) return null;
-  return { voc: voc.data, voc8d: voc8d.data, logs: logs.data ?? [] };
+  return {
+    voc: voc.data,
+    voc8d: voc8d.data,
+    logs: logs.data ?? [],
+    editLogs: editLogs.data ?? [],
+  };
 }
 
 export type VocDetail = NonNullable<Awaited<ReturnType<typeof getVocDetail>>>;
@@ -89,6 +100,28 @@ export async function advanceVocStage(args: {
     p_8d: args.values as Json,
     p_changed_by: args.changedBy,
     p_note: args.note ?? undefined,
+  });
+  if (error) throw new Error(error.message);
+}
+
+/** 접수 정보와 수정 기록을 한 번에 저장한다. 호출 전에 requireAdmin으로 확인한다. */
+export async function editVoc(args: {
+  vocId: string;
+  stage: Stage;
+  voc: Omit<NewVoc, "received_at">;
+  team: string | null;
+  changes: VocChange[];
+  reason: string;
+  changedBy: string;
+}) {
+  const { error } = await createAdminClient().rpc("edit_voc", {
+    p_voc_id: args.vocId,
+    p_stage: args.stage,
+    p_voc: args.voc as Json,
+    p_team: args.team ?? "",
+    p_changes: args.changes as Json,
+    p_reason: args.reason,
+    p_changed_by: args.changedBy,
   });
   if (error) throw new Error(error.message);
 }
